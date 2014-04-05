@@ -45,9 +45,7 @@ public class Game {
         int roll = currentPlayerThrowDice();
 
         if (currentPlayer().inPenaltyBox()) {
-            if (isCurrentPlayerGettingOutOfPenaltyBox(roll)) {
-                currentPlayer().getOutOfPenaltyBox();
-            }
+            tryToGetPlayerOutOfPenaltyBox(roll);
         }
 
         if (!currentPlayer().inPenaltyBox()) {
@@ -62,8 +60,13 @@ public class Game {
         nextPlayer();
     }
 
-    private boolean playerCanUseThisTurn(int roll) {
-        return !currentPlayer().inPenaltyBox() || isCurrentPlayerGettingOutOfPenaltyBox(roll);
+    private void tryToGetPlayerOutOfPenaltyBox(int roll) {
+        if (!this.rules.playerShouldContinueInPenaltyBox(roll)) {
+            currentPlayer().getOutOfPenaltyBox();
+            System.out.println(currentPlayer().name() + " is getting out of the penalty box");
+        } else {
+            System.out.println(currentPlayer().name() + " is not getting out of the penalty box");
+        }
     }
 
     private void reactToAnswer() {
@@ -82,15 +85,6 @@ public class Game {
 
     private boolean answerWasWrong() {
         return rand.nextInt(9) == 7;
-    }
-
-    private boolean isCurrentPlayerGettingOutOfPenaltyBox(int roll) {
-        if (this.rules.playerShouldContinueInPenaltyBox(roll)) {
-            System.out.println(currentPlayer().name() + " is not getting out of the penalty box");
-            return false;
-        }
-        System.out.println(currentPlayer().name() + " is getting out of the penalty box");
-        return true;
     }
 
     private Player currentPlayer() {
