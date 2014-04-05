@@ -44,7 +44,13 @@ public class Game {
 
         int roll = currentPlayerThrowDice();
 
-        if (playerCanUseThisTurn(roll)) {
+        if (currentPlayer().inPenaltyBox()) {
+            if (isCurrentPlayerGettingOutOfPenaltyBox(roll)) {
+                currentPlayer().getOutOfPenaltyBox();
+            }
+        }
+
+        if (!currentPlayer().inPenaltyBox()) {
 
             advancePlayerBy(roll);
 

@@ -47,7 +47,6 @@ public class Player {
 
     public void getOutOfPenaltyBox() {
         this.inPenaltyBox = false;
-
     }
 
     public String name() {

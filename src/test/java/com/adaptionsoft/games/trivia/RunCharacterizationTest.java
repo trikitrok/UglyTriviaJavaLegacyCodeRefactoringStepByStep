@@ -117,7 +117,6 @@ public class RunCharacterizationTest {
         expectedOutput += "Chet now has 4 Gold Coins.\n";
         expectedOutput += "Pat is the current player\n";
         expectedOutput += "They have rolled a 5\n";
-        expectedOutput += "Pat is getting out of the penalty box\n";
         expectedOutput += "Pat's new location is 5\n";
         expectedOutput += "The category is Science\n";
         expectedOutput += "Science Question 2\n";
