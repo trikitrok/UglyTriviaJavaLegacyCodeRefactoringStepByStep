@@ -43,7 +43,7 @@ public class Game {
 
             int roll = throwDice();
 
-            if (this.inPenaltyBox[this.currentPlayer]) {
+            if (currentPlayerInPenaltyBox()) {
                 if (this.rules.shouldGetOutOfPenaltyBox(roll)) {
                     this.isGettingOutOfPenaltyBox = true;
 
@@ -81,6 +81,10 @@ public class Game {
                 this.responseToCorrectAnswer();
             }
         } while (notAWinner);
+    }
+
+    private boolean currentPlayerInPenaltyBox() {
+        return this.inPenaltyBox[this.currentPlayer];
     }
 
     private int throwDice() {
