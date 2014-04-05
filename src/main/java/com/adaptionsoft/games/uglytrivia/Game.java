@@ -16,7 +16,6 @@ public class Game {
     LinkedList rockQuestions = new LinkedList();
 
     int currentPlayer = 0;
-    boolean isGettingOutOfPenaltyBox;
 
     boolean notAWinner = true;
 
@@ -49,8 +48,6 @@ public class Game {
         int roll = currentPlayerThrowDice();
 
         if (!currentPlayerInPenaltyBox() || isCurrentPlayerGettingOutOfPenaltyBox(roll)) {
-
-            isGettingOutOfPenaltyBox = true;
 
             moveAndAskQuestionToCurrentPlayer(roll);
 
