@@ -51,7 +51,7 @@ public class Game {
 
         if (playerCanUseThisTurn(roll)) {
 
-            movePlayer(roll);
+            advancePlayerBy(roll);
 
             askQuestion();
 
@@ -104,7 +104,7 @@ public class Game {
         return playersList.get(currentPlayer);
     }
 
-    private void movePlayer(int roll) {
+    private void advancePlayerBy(int roll) {
         int place = computeNewPositionInBoard(roll);
 
         currentPlayer().moveTo(place);
