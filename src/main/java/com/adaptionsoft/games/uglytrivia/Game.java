@@ -54,15 +54,19 @@ public class Game {
                 moveAndAskQuestionToCurrentPlayer(roll);
             }
 
-            if (answerWasCorrect()) {
-                responseToWrongAnswer();
-            } else {
-                responseToCorrectAnswer();
-            }
+            reactToAnswer();
 
             nextPlayer();
 
         } while (notAWinner);
+    }
+
+    private void reactToAnswer() {
+        if (answerWasCorrect()) {
+            reactToWrongAnswer();
+        } else {
+            reactToCorrectAnswer();
+        }
     }
 
     private boolean answerWasCorrect() {
@@ -157,7 +161,7 @@ public class Game {
         return "Rock";
     }
 
-    private void responseToCorrectAnswer() {
+    private void reactToCorrectAnswer() {
         if (inPenaltyBox[currentPlayer]) {
             if (isGettingOutOfPenaltyBox) {
                 System.out.println("Answer was correct!!!!");
@@ -180,7 +184,7 @@ public class Game {
         }
     }
 
-    private void responseToWrongAnswer() {
+    private void reactToWrongAnswer() {
         System.out.println("Question was incorrectly answered");
         System.out.println(players.get(currentPlayer) + " was sent to the penalty box");
         inPenaltyBox[currentPlayer] = true;
