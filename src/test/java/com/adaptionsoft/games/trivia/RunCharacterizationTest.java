@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.adaptionsoft.games.uglytrivia.Game;
+import com.adaptionsoft.games.uglytrivia.Players;
 
 public class RunCharacterizationTest {
 
@@ -27,10 +28,7 @@ public class RunCharacterizationTest {
 
     @Test
     public void rollCharacterizationForRollResult5() {
-        Game aGame = new Game(new Random(1234));
-        aGame.add("Chet");
-        aGame.add("Pat");
-        aGame.add("Sue");
+        Game aGame = new Game(new Random(1234), new Players("Chet", "Pat", "Sue"));
 
         aGame.run();
 

@@ -1,8 +1,6 @@
 package com.adaptionsoft.games.uglytrivia;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
 
 public class Game {
@@ -11,17 +9,14 @@ public class Game {
     LinkedList sportsQuestions = new LinkedList();
     LinkedList rockQuestions = new LinkedList();
 
-    int currentPlayer = 0;
-
-    List<Player> players;
-
     boolean notAWinner = true;
 
     private Random rand;
     private Rules rules;
+    Players players;
 
-    public Game(Random rand) {
-        players = new ArrayList<Player>();
+    public Game(Random rand, Players players) {
+        this.players = players;
         this.rules = new Rules();
         this.rand = rand;
 
@@ -56,7 +51,7 @@ public class Game {
             reactToAnswer();
         }
 
-        nextPlayer();
+        players.next();
     }
 
     private void reactToAnswer() {
@@ -78,7 +73,7 @@ public class Game {
     }
 
     private Player currentPlayer() {
-        return players.get(currentPlayer);
+        return players.getCurrentPlayer();
     }
 
     private void advancePlayerBy(int places) {
@@ -102,13 +97,6 @@ public class Game {
         int roll = rand.nextInt(5) + 1;
         System.out.println("They have rolled a " + roll);
         return roll;
-    }
-
-    public boolean add(String playerName) {
-        players.add(new Player(playerName));
-        System.out.println(playerName + " was added");
-        System.out.println("They are player number " + players.size());
-        return true;
     }
 
     private void askQuestion() {
@@ -148,11 +136,5 @@ public class Game {
         System.out.println("Question was incorrectly answered");
         currentPlayer().enterPenaltyBox();
         notAWinner = true;
-    }
-
-    private void nextPlayer() {
-        currentPlayer++;
-        if (currentPlayer == players.size())
-            currentPlayer = 0;
     }
 }
