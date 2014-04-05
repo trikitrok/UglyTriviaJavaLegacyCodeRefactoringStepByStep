@@ -59,6 +59,9 @@ public class Game {
             } else {
                 responseToCorrectAnswer();
             }
+
+            nextPlayer();
+
         } while (notAWinner);
     }
 
@@ -74,14 +77,15 @@ public class Game {
 
     private boolean isCurrentPlayerGettingOutOfPenaltyBox(int roll) {
         if (this.rules.playerShouldGetOutOfPenaltyBox(roll)) {
+
             System.out.println(this.players.get(this.currentPlayer)
                     + " is getting out of the penalty box");
+
             return true;
         }
 
         System.out.println(this.players.get(this.currentPlayer)
                 + " is not getting out of the penalty box");
-
         return false;
     }
 
@@ -162,24 +166,16 @@ public class Game {
                         + " Gold Coins.");
 
                 notAWinner = !currentPlayerHasWon();
-
-                nextPlayer();
-
             } else {
-                nextPlayer();
                 notAWinner = true;
             }
-
         } else {
-
             System.out.println("Answer was correct!!!!");
             purses[currentPlayer]++;
             System.out.println(players.get(currentPlayer) + " now has " + purses[currentPlayer]
                     + " Gold Coins.");
 
             notAWinner = !currentPlayerHasWon();
-
-            nextPlayer();
 
         }
     }
@@ -188,9 +184,6 @@ public class Game {
         System.out.println("Question was incorrectly answered");
         System.out.println(players.get(currentPlayer) + " was sent to the penalty box");
         inPenaltyBox[currentPlayer] = true;
-
-        nextPlayer();
-
         notAWinner = true;
     }
 
