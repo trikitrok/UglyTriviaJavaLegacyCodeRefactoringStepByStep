@@ -7,7 +7,6 @@ import java.util.Random;
 
 public class Game {
     ArrayList players = new ArrayList();
-    int[] purses = new int[6];
     boolean[] inPenaltyBox = new boolean[6];
 
     LinkedList popQuestions = new LinkedList();
@@ -75,8 +74,9 @@ public class Game {
 
     private void reactToCorrectAnswer() {
         System.out.println("Answer was correct!!!!");
-        purses[currentPlayer]++;
-        System.out.println(players.get(currentPlayer) + " now has " + purses[currentPlayer]
+        // purses[currentPlayer]++;
+        currentPlayer().winGoldCoin();
+        System.out.println(players.get(currentPlayer) + " now has " + currentPlayer().coins()
                 + " Gold Coins.");
         notAWinner = !aPlayerHasWon();
     }
@@ -136,7 +136,6 @@ public class Game {
     public boolean add(String playerName) {
         playersList.add(new Player(playerName));
         players.add(playerName);
-        purses[howManyPlayers()] = 0;
         inPenaltyBox[howManyPlayers()] = false;
 
         System.out.println(playerName + " was added");
@@ -195,6 +194,7 @@ public class Game {
     }
 
     private boolean aPlayerHasWon() {
-        return this.rules.playerHasWon(purses[currentPlayer]);
+        // return this.rules.playerHasWon(purses[currentPlayer]);
+        return currentPlayer().hasWonAccordingTo(rules);
     }
 }
