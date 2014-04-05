@@ -39,20 +39,20 @@ public class Game {
 
     public void run() {
         do {
-            int roll = rand.nextInt(5) + 1;
             System.out.println(this.players.get(this.currentPlayer) + " is the current player");
-            System.out.println("They have rolled a " + roll);
-            
+
+            int roll = throwDice();
+
             if (this.inPenaltyBox[this.currentPlayer]) {
                 if (this.rules.shouldGetOutOfPenaltyBox(roll)) {
                     this.isGettingOutOfPenaltyBox = true;
-            
+
                     System.out.println(this.players.get(this.currentPlayer)
                             + " is getting out of the penalty box");
                     this.places[this.currentPlayer] = this.places[this.currentPlayer] + roll;
                     if (this.places[this.currentPlayer] > 11)
                         this.places[this.currentPlayer] = this.places[this.currentPlayer] - 12;
-            
+
                     System.out.println(this.players.get(this.currentPlayer) + "'s new location is "
                             + this.places[this.currentPlayer]);
                     System.out.println("The category is " + this.currentCategory());
@@ -62,13 +62,13 @@ public class Game {
                             + " is not getting out of the penalty box");
                     this.isGettingOutOfPenaltyBox = false;
                 }
-            
+
             } else {
-            
+
                 this.places[this.currentPlayer] = this.places[this.currentPlayer] + roll;
                 if (this.places[this.currentPlayer] > 11)
                     this.places[this.currentPlayer] = this.places[this.currentPlayer] - 12;
-            
+
                 System.out.println(this.players.get(this.currentPlayer) + "'s new location is "
                         + this.places[this.currentPlayer]);
                 System.out.println("The category is " + this.currentCategory());
@@ -81,6 +81,12 @@ public class Game {
                 this.responseToCorrectAnswer();
             }
         } while (notAWinner);
+    }
+
+    private int throwDice() {
+        int roll = rand.nextInt(5) + 1;
+        System.out.println("They have rolled a " + roll);
+        return roll;
     }
 
     public boolean add(String playerName) {
