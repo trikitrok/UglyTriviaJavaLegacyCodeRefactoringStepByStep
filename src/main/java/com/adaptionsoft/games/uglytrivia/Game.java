@@ -163,25 +163,29 @@ public class Game {
     }
 
     private String currentCategory() {
-        if (getCurrentPlayerPlace() == 0)
+        if (currentPlayerIsAt(0))
             return "Pop";
-        if (getCurrentPlayerPlace() == 4)
+        if (currentPlayerIsAt(4))
             return "Pop";
-        if (getCurrentPlayerPlace() == 8)
+        if (currentPlayerIsAt(8))
             return "Pop";
-        if (getCurrentPlayerPlace() == 1)
+        if (currentPlayerIsAt(1))
             return "Science";
-        if (getCurrentPlayerPlace() == 5)
+        if (currentPlayerIsAt(5))
             return "Science";
-        if (getCurrentPlayerPlace() == 9)
+        if (currentPlayerIsAt(9))
             return "Science";
-        if (getCurrentPlayerPlace() == 2)
+        if (currentPlayerIsAt(2))
             return "Sports";
-        if (getCurrentPlayerPlace() == 6)
+        if (currentPlayerIsAt(6))
             return "Sports";
-        if (getCurrentPlayerPlace() == 10)
+        if (currentPlayerIsAt(10))
             return "Sports";
         return "Rock";
+    }
+
+    private boolean currentPlayerIsAt(int place) {
+        return getCurrentPlayerPlace() == place;
     }
 
     private void reactToWrongAnswer() {
