@@ -186,6 +186,6 @@ public class Game {
     }
 
     private boolean currentPlayerHasWon() {
-        return (purses[currentPlayer] == 6);
+        return this.rules.playerHasWon(purses[currentPlayer]);
     }
 }
