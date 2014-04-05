@@ -138,10 +138,6 @@ public class Game {
         return true;
     }
 
-    private int howManyPlayers() {
-        return players.size();
-    }
-
     private void askQuestion() {
         if (currentCategory() == "Pop")
             System.out.println(popQuestions.removeFirst());
