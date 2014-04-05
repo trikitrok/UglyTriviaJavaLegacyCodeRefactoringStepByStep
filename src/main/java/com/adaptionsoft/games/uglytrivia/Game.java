@@ -7,7 +7,6 @@ import java.util.Random;
 
 public class Game {
     ArrayList players = new ArrayList();
-    boolean[] inPenaltyBox = new boolean[6];
 
     LinkedList popQuestions = new LinkedList();
     LinkedList scienceQuestions = new LinkedList();
@@ -61,7 +60,7 @@ public class Game {
     }
 
     private boolean playerCanUseThisTurn(int roll) {
-        return !currentPlayerInPenaltyBox() || isCurrentPlayerGettingOutOfPenaltyBox(roll);
+        return !currentPlayer().inPenaltyBox() || isCurrentPlayerGettingOutOfPenaltyBox(roll);
     }
 
     private void reactToAnswer() {
@@ -123,10 +122,6 @@ public class Game {
         return place;
     }
 
-    private boolean currentPlayerInPenaltyBox() {
-        return this.inPenaltyBox[this.currentPlayer];
-    }
-
     private int currentPlayerThrowDice() {
         int roll = rand.nextInt(5) + 1;
         System.out.println("They have rolled a " + roll);
@@ -136,7 +131,7 @@ public class Game {
     public boolean add(String playerName) {
         playersList.add(new Player(playerName));
         players.add(playerName);
-        inPenaltyBox[howManyPlayers()] = false;
+        currentPlayer().getOutOfPenaltyBox();
 
         System.out.println(playerName + " was added");
         System.out.println("They are player number " + players.size());
@@ -183,7 +178,7 @@ public class Game {
     private void reactToWrongAnswer() {
         System.out.println("Question was incorrectly answered");
         System.out.println(players.get(currentPlayer) + " was sent to the penalty box");
-        inPenaltyBox[currentPlayer] = true;
+        currentPlayer().enterPenaltyBox();
         notAWinner = true;
     }
 
