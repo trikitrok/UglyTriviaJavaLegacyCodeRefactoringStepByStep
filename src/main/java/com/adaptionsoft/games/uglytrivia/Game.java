@@ -49,7 +49,9 @@ public class Game {
 
         if (playerCanUseThisTurn(roll)) {
 
-            moveAndAskQuestionToCurrentPlayer(roll);
+            moveCurrentPlayer(roll);
+
+            askQuestion();
 
             reactToAnswer();
         }
@@ -81,12 +83,6 @@ public class Game {
         return rand.nextInt(9) == 7;
     }
 
-    private void moveAndAskQuestionToCurrentPlayer(int roll) {
-        moveCurrentPlayer(roll);
-        System.out.println("The category is " + this.currentCategory());
-        askQuestion();
-    }
-
     private boolean isCurrentPlayerGettingOutOfPenaltyBox(int roll) {
         if (this.rules.playerShouldContinueInPenaltyBox(roll)) {
 
@@ -114,6 +110,7 @@ public class Game {
 
         System.out.println(this.players.get(this.currentPlayer) + "'s new location is "
                 + this.places[this.currentPlayer]);
+        System.out.println("The category is " + this.currentCategory());
     }
 
     private boolean currentPlayerInPenaltyBox() {
