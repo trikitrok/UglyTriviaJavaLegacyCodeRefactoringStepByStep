@@ -41,30 +41,17 @@ public class Game {
         do {
             System.out.println(this.players.get(this.currentPlayer) + " is the current player");
 
-            int roll = throwDice();
+            int roll = currentPlayerThrowDice();
 
             if (currentPlayerInPenaltyBox()) {
-                if (this.rules.playerShouldGetOutOfPenaltyBox(roll)) {
-                    this.isGettingOutOfPenaltyBox = true;
-                    System.out.println(this.players.get(this.currentPlayer)
-                            + " is getting out of the penalty box");
+                this.isGettingOutOfPenaltyBox = isCurrentPlayerGettingOutOfPenaltyBox(roll);
 
-                    moveCurrentPlayer(roll);
-
-                    System.out.println("The category is " + this.currentCategory());
-
-                    this.askQuestion();
-                } else {
-                    System.out.println(this.players.get(this.currentPlayer)
-                            + " is not getting out of the penalty box");
-                    this.isGettingOutOfPenaltyBox = false;
+                if (this.isGettingOutOfPenaltyBox == true) {
+                    moveAndAskQuestionToCurrentPlayer(roll);
                 }
 
             } else {
-
-                moveCurrentPlayer(roll);
-                System.out.println("The category is " + this.currentCategory());
-                this.askQuestion();
+                moveAndAskQuestionToCurrentPlayer(roll);
             }
 
             if (rand.nextInt(9) == 7) {
@@ -73,6 +60,24 @@ public class Game {
                 this.responseToCorrectAnswer();
             }
         } while (notAWinner);
+    }
+
+    private void moveAndAskQuestionToCurrentPlayer(int roll) {
+        moveCurrentPlayer(roll);
+        System.out.println("The category is " + this.currentCategory());
+        askQuestion();
+    }
+
+    private boolean isCurrentPlayerGettingOutOfPenaltyBox(int roll) {
+        if (this.rules.playerShouldGetOutOfPenaltyBox(roll)) {
+            System.out.println(this.players.get(this.currentPlayer)
+                    + " is getting out of the penalty box");
+            return true;
+        }
+
+        System.out.println(this.players.get(this.currentPlayer)
+                + " is not getting out of the penalty box");
+        return false;
     }
 
     private void moveCurrentPlayer(int roll) {
@@ -88,7 +93,7 @@ public class Game {
         return this.inPenaltyBox[this.currentPlayer];
     }
 
-    private int throwDice() {
+    private int currentPlayerThrowDice() {
         int roll = rand.nextInt(5) + 1;
         System.out.println("They have rolled a " + roll);
         return roll;
