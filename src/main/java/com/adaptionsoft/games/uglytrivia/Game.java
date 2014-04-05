@@ -39,7 +39,41 @@ public class Game {
 
     public void run() {
         do {
-            this.roll(rand.nextInt(5) + 1);
+            int roll = rand.nextInt(5) + 1;
+            System.out.println(this.players.get(this.currentPlayer) + " is the current player");
+            System.out.println("They have rolled a " + roll);
+            
+            if (this.inPenaltyBox[this.currentPlayer]) {
+                if (this.rules.shouldGetOutOfPenaltyBox(roll)) {
+                    this.isGettingOutOfPenaltyBox = true;
+            
+                    System.out.println(this.players.get(this.currentPlayer)
+                            + " is getting out of the penalty box");
+                    this.places[this.currentPlayer] = this.places[this.currentPlayer] + roll;
+                    if (this.places[this.currentPlayer] > 11)
+                        this.places[this.currentPlayer] = this.places[this.currentPlayer] - 12;
+            
+                    System.out.println(this.players.get(this.currentPlayer) + "'s new location is "
+                            + this.places[this.currentPlayer]);
+                    System.out.println("The category is " + this.currentCategory());
+                    this.askQuestion();
+                } else {
+                    System.out.println(this.players.get(this.currentPlayer)
+                            + " is not getting out of the penalty box");
+                    this.isGettingOutOfPenaltyBox = false;
+                }
+            
+            } else {
+            
+                this.places[this.currentPlayer] = this.places[this.currentPlayer] + roll;
+                if (this.places[this.currentPlayer] > 11)
+                    this.places[this.currentPlayer] = this.places[this.currentPlayer] - 12;
+            
+                System.out.println(this.players.get(this.currentPlayer) + "'s new location is "
+                        + this.places[this.currentPlayer]);
+                System.out.println("The category is " + this.currentCategory());
+                this.askQuestion();
+            }
 
             if (rand.nextInt(9) == 7) {
                 this.responseToWrongAnswer();
@@ -63,44 +97,6 @@ public class Game {
 
     private int howManyPlayers() {
         return players.size();
-    }
-
-    private void roll(int roll) {
-        System.out.println(players.get(currentPlayer) + " is the current player");
-        System.out.println("They have rolled a " + roll);
-
-        if (inPenaltyBox[currentPlayer]) {
-            if (this.rules.shouldGetOutOfPenaltyBox(roll)) {
-                isGettingOutOfPenaltyBox = true;
-
-                System.out.println(players.get(currentPlayer)
-                        + " is getting out of the penalty box");
-                places[currentPlayer] = places[currentPlayer] + roll;
-                if (places[currentPlayer] > 11)
-                    places[currentPlayer] = places[currentPlayer] - 12;
-
-                System.out.println(players.get(currentPlayer) + "'s new location is "
-                        + places[currentPlayer]);
-                System.out.println("The category is " + currentCategory());
-                askQuestion();
-            } else {
-                System.out.println(players.get(currentPlayer)
-                        + " is not getting out of the penalty box");
-                isGettingOutOfPenaltyBox = false;
-            }
-
-        } else {
-
-            places[currentPlayer] = places[currentPlayer] + roll;
-            if (places[currentPlayer] > 11)
-                places[currentPlayer] = places[currentPlayer] - 12;
-
-            System.out.println(players.get(currentPlayer) + "'s new location is "
-                    + places[currentPlayer]);
-            System.out.println("The category is " + currentCategory());
-            askQuestion();
-        }
-
     }
 
     private void askQuestion() {
