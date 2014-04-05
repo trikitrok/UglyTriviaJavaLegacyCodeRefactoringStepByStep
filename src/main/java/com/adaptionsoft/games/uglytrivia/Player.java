@@ -16,6 +16,7 @@ public class Player {
 
     public void moveTo(int newPlace) {
         this.place = newPlace;
+        System.out.println(this.name + "'s new location is " + this.place);
     }
 
     public int place() {
@@ -41,6 +42,7 @@ public class Player {
 
     public void enterPenaltyBox() {
         this.inPenaltyBox = true;
+        System.out.println(this.name + " was sent to the penalty box");
     }
 
     public void getOutOfPenaltyBox() {

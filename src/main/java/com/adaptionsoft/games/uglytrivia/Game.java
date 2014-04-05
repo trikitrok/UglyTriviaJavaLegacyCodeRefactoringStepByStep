@@ -80,14 +80,10 @@ public class Game {
 
     private boolean isCurrentPlayerGettingOutOfPenaltyBox(int roll) {
         if (this.rules.playerShouldContinueInPenaltyBox(roll)) {
-
             System.out.println(currentPlayer().name() + " is not getting out of the penalty box");
-
             return false;
         }
-
         System.out.println(currentPlayer().name() + " is getting out of the penalty box");
-
         return true;
     }
 
@@ -100,8 +96,6 @@ public class Game {
 
         currentPlayer().moveTo(place);
 
-        System.out
-                .println(currentPlayer().name() + "'s new location is " + currentPlayer().place());
         System.out.println("The category is " + this.currentCategory());
     }
 
@@ -162,7 +156,6 @@ public class Game {
 
     private void reactToWrongAnswer() {
         System.out.println("Question was incorrectly answered");
-        System.out.println(currentPlayer().name() + " was sent to the penalty box");
         currentPlayer().enterPenaltyBox();
         notAWinner = true;
     }
