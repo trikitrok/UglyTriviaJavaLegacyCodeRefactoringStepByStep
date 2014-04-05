@@ -70,7 +70,7 @@ public class Game {
         System.out.println("They have rolled a " + roll);
 
         if (inPenaltyBox[currentPlayer]) {
-            if (roll % 2 != 0) {
+            if (shouldGetOutOfPenaltyBox(roll)) {
                 isGettingOutOfPenaltyBox = true;
 
                 System.out.println(players.get(currentPlayer)
@@ -101,6 +101,10 @@ public class Game {
             askQuestion();
         }
 
+    }
+
+    protected boolean shouldGetOutOfPenaltyBox(int roll) {
+        return roll % 2 != 0;
     }
 
     private void askQuestion() {
