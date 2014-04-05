@@ -47,23 +47,34 @@ public class Game {
 
         int roll = currentPlayerThrowDice();
 
-        if (!currentPlayerInPenaltyBox() || isCurrentPlayerGettingOutOfPenaltyBox(roll)) {
+        if (playerCanUseThisTurn(roll)) {
 
             moveAndAskQuestionToCurrentPlayer(roll);
 
-            if (answerWasWrong()) {
-                reactToWrongAnswer();
-            } else {
-                System.out.println("Answer was correct!!!!");
-                purses[currentPlayer]++;
-                System.out.println(players.get(currentPlayer) + " now has " + purses[currentPlayer]
-                        + " Gold Coins.");
-
-                notAWinner = !currentPlayerHasWon();
-            }
+            reactToAnswer();
         }
 
         nextPlayer();
+    }
+
+    private boolean playerCanUseThisTurn(int roll) {
+        return !currentPlayerInPenaltyBox() || isCurrentPlayerGettingOutOfPenaltyBox(roll);
+    }
+
+    private void reactToAnswer() {
+        if (answerWasWrong()) {
+            reactToWrongAnswer();
+        } else {
+            reactToCorrectAnswer();
+        }
+    }
+
+    private void reactToCorrectAnswer() {
+        System.out.println("Answer was correct!!!!");
+        purses[currentPlayer]++;
+        System.out.println(players.get(currentPlayer) + " now has " + purses[currentPlayer]
+                + " Gold Coins.");
+        notAWinner = !currentPlayerHasWon();
     }
 
     private boolean answerWasWrong() {
