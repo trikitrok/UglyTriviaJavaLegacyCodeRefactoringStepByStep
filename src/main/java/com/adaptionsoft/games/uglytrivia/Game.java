@@ -20,7 +20,11 @@ public class Game {
 
     private Random rand;
 
+    private Rules rules;
+
     public Game(Random rand) {
+
+        this.rules = new Rules();
         this.rand = rand;
 
         for (int i = 0; i < 50; i++) {
@@ -66,7 +70,7 @@ public class Game {
         System.out.println("They have rolled a " + roll);
 
         if (inPenaltyBox[currentPlayer]) {
-            if (shouldGetOutOfPenaltyBox(roll)) {
+            if (this.rules.shouldGetOutOfPenaltyBox(roll)) {
                 isGettingOutOfPenaltyBox = true;
 
                 System.out.println(players.get(currentPlayer)
@@ -97,10 +101,6 @@ public class Game {
             askQuestion();
         }
 
-    }
-
-    private boolean shouldGetOutOfPenaltyBox(int roll) {
-        return roll % 2 != 0;
     }
 
     private void askQuestion() {
