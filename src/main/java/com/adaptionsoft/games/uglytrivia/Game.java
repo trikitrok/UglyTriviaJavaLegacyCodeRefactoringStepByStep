@@ -39,26 +39,29 @@ public class Game {
 
     public void run() {
         do {
-            System.out.println(this.players.get(this.currentPlayer) + " is the current player");
+            runOneTurn();
+        } while (notAWinner);
+    }
 
-            int roll = currentPlayerThrowDice();
+    private void runOneTurn() {
+        System.out.println(this.players.get(this.currentPlayer) + " is the current player");
 
-            if (currentPlayerInPenaltyBox()) {
-                isGettingOutOfPenaltyBox = isCurrentPlayerGettingOutOfPenaltyBox(roll);
+        int roll = currentPlayerThrowDice();
 
-                if (isGettingOutOfPenaltyBox == true) {
-                    moveAndAskQuestionToCurrentPlayer(roll);
-                }
+        if (currentPlayerInPenaltyBox()) {
+            isGettingOutOfPenaltyBox = isCurrentPlayerGettingOutOfPenaltyBox(roll);
 
-            } else {
+            if (isGettingOutOfPenaltyBox == true) {
                 moveAndAskQuestionToCurrentPlayer(roll);
             }
 
-            reactToAnswer();
+        } else {
+            moveAndAskQuestionToCurrentPlayer(roll);
+        }
 
-            nextPlayer();
+        reactToAnswer();
 
-        } while (notAWinner);
+        nextPlayer();
     }
 
     private void reactToAnswer() {
