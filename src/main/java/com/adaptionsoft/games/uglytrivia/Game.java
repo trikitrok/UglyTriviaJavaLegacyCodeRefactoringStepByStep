@@ -81,6 +81,7 @@ public class Game {
 
         System.out.println(this.players.get(this.currentPlayer)
                 + " is not getting out of the penalty box");
+
         return false;
     }
 
@@ -171,7 +172,7 @@ public class Game {
 
         } else {
 
-            System.out.println("Answer was corrent!!!!");
+            System.out.println("Answer was correct!!!!");
             purses[currentPlayer]++;
             System.out.println(players.get(currentPlayer) + " now has " + purses[currentPlayer]
                     + " Gold Coins.");
