@@ -44,9 +44,9 @@ public class Game {
             int roll = currentPlayerThrowDice();
 
             if (currentPlayerInPenaltyBox()) {
-                this.isGettingOutOfPenaltyBox = isCurrentPlayerGettingOutOfPenaltyBox(roll);
+                isGettingOutOfPenaltyBox = isCurrentPlayerGettingOutOfPenaltyBox(roll);
 
-                if (this.isGettingOutOfPenaltyBox == true) {
+                if (isGettingOutOfPenaltyBox == true) {
                     moveAndAskQuestionToCurrentPlayer(roll);
                 }
 
@@ -54,12 +54,16 @@ public class Game {
                 moveAndAskQuestionToCurrentPlayer(roll);
             }
 
-            if (rand.nextInt(9) == 7) {
-                this.responseToWrongAnswer();
+            if (answerWasCorrect()) {
+                responseToWrongAnswer();
             } else {
-                this.responseToCorrectAnswer();
+                responseToCorrectAnswer();
             }
         } while (notAWinner);
+    }
+
+    private boolean answerWasCorrect() {
+        return rand.nextInt(9) == 7;
     }
 
     private void moveAndAskQuestionToCurrentPlayer(int roll) {
