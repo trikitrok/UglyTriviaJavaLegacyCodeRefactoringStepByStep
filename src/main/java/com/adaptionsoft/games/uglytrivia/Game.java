@@ -54,18 +54,33 @@ public class Game {
 
             moveAndAskQuestionToCurrentPlayer(roll);
 
-            reactToAnswer();
+            if (answerWasWrong()) {
+                reactToWrongAnswer();
+            } else {
+                if (inPenaltyBox[currentPlayer]) {
+                    if (isGettingOutOfPenaltyBox) {
+                        System.out.println("Answer was correct!!!!");
+                        purses[currentPlayer]++;
+                        System.out.println(players.get(currentPlayer) + " now has " + purses[currentPlayer]
+                                + " Gold Coins.");
+                
+                        notAWinner = !currentPlayerHasWon();
+                    } else {
+                        notAWinner = true;
+                    }
+                } else {
+                    System.out.println("Answer was correct!!!!");
+                    purses[currentPlayer]++;
+                    System.out.println(players.get(currentPlayer) + " now has " + purses[currentPlayer]
+                            + " Gold Coins.");
+                
+                    notAWinner = !currentPlayerHasWon();
+                
+                }
+            }
         }
 
         nextPlayer();
-    }
-
-    private void reactToAnswer() {
-        if (answerWasWrong()) {
-            reactToWrongAnswer();
-        } else {
-            reactToCorrectAnswer();
-        }
     }
 
     private boolean answerWasWrong() {
@@ -164,29 +179,6 @@ public class Game {
         if (places[currentPlayer] == 10)
             return "Sports";
         return "Rock";
-    }
-
-    private void reactToCorrectAnswer() {
-        if (inPenaltyBox[currentPlayer]) {
-            if (isGettingOutOfPenaltyBox) {
-                System.out.println("Answer was correct!!!!");
-                purses[currentPlayer]++;
-                System.out.println(players.get(currentPlayer) + " now has " + purses[currentPlayer]
-                        + " Gold Coins.");
-
-                notAWinner = !currentPlayerHasWon();
-            } else {
-                notAWinner = true;
-            }
-        } else {
-            System.out.println("Answer was correct!!!!");
-            purses[currentPlayer]++;
-            System.out.println(players.get(currentPlayer) + " now has " + purses[currentPlayer]
-                    + " Gold Coins.");
-
-            notAWinner = !currentPlayerHasWon();
-
-        }
     }
 
     private void reactToWrongAnswer() {
