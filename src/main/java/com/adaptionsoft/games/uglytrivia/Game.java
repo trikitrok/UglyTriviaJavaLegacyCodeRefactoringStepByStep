@@ -163,29 +163,25 @@ public class Game {
     }
 
     private String currentCategory() {
-        if (currentPlayerIsAt(0))
+        if (currentPlayer().isAt(0))
             return "Pop";
-        if (currentPlayerIsAt(4))
+        if (currentPlayer().isAt(4))
             return "Pop";
-        if (currentPlayerIsAt(8))
+        if (currentPlayer().isAt(8))
             return "Pop";
-        if (currentPlayerIsAt(1))
+        if (currentPlayer().isAt(1))
             return "Science";
-        if (currentPlayerIsAt(5))
+        if (currentPlayer().isAt(5))
             return "Science";
-        if (currentPlayerIsAt(9))
+        if (currentPlayer().isAt(9))
             return "Science";
-        if (currentPlayerIsAt(2))
+        if (currentPlayer().isAt(2))
             return "Sports";
-        if (currentPlayerIsAt(6))
+        if (currentPlayer().isAt(6))
             return "Sports";
-        if (currentPlayerIsAt(10))
+        if (currentPlayer().isAt(10))
             return "Sports";
         return "Rock";
-    }
-
-    private boolean currentPlayerIsAt(int place) {
-        return currentPlayer().isAt(place);
     }
 
     private void reactToWrongAnswer() {
