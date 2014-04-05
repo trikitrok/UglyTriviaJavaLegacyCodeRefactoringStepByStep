@@ -14,15 +14,6 @@ public class Player {
         this.inPenaltyBox = false;
     }
 
-    public void moveTo(int newPlace) {
-        this.place = newPlace;
-        System.out.println(this.name + "'s new location is " + this.place);
-    }
-
-    public int place() {
-        return this.place;
-    }
-
     public boolean isAt(int place) {
         return this.place == place;
     }
@@ -56,5 +47,10 @@ public class Player {
         } else {
             System.out.println(this.name + " is not getting out of the penalty box");
         }
+    }
+
+    public void advance(int places, Board board) {
+        this.place = board.getPlaceAhead(this.place, places);
+        System.out.println(this.name + "'s new location is " + this.place);
     }
 }

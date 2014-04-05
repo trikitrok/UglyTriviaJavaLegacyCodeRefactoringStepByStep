@@ -10,11 +10,14 @@ public class Game {
     Players players;
     Questions questions;
 
+    private Board board;
+
     public Game(Random rand, Players players) {
         this.players = players;
         this.rules = new Rules();
         this.rand = rand;
         this.questions = new Questions();
+        this.board = new Board();
     }
 
     public void run() {
@@ -66,20 +69,8 @@ public class Game {
     }
 
     private void advancePlayerBy(int places) {
-        int place = advanceInBoard(places);
-
-        currentPlayer().moveTo(place);
-
+        currentPlayer().advance(places, board);
         System.out.println("The category is " + this.currentCategory());
-    }
-
-    private int advanceInBoard(int places) {
-        int place = currentPlayer().place() + places;
-        final int BOARDS_PLACES_NUMBER = 12;
-        if (place > BOARDS_PLACES_NUMBER - 1) {
-            place = place - BOARDS_PLACES_NUMBER;
-        }
-        return place;
     }
 
     private int currentPlayerThrowDice() {
