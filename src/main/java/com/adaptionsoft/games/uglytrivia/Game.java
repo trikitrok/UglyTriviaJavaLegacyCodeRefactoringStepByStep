@@ -48,17 +48,14 @@ public class Game {
 
         int roll = currentPlayerThrowDice();
 
-        if (currentPlayerInPenaltyBox()) {
-            isGettingOutOfPenaltyBox = isCurrentPlayerGettingOutOfPenaltyBox(roll);
+        if (!currentPlayerInPenaltyBox() || isCurrentPlayerGettingOutOfPenaltyBox(roll)) {
 
-            if (isGettingOutOfPenaltyBox == true) {
-                moveAndAskQuestionToCurrentPlayer(roll);
-            }
-        } else {
+            isGettingOutOfPenaltyBox = true;
+
             moveAndAskQuestionToCurrentPlayer(roll);
-        }
 
-        reactToAnswer();
+            reactToAnswer();
+        }
 
         nextPlayer();
     }
@@ -82,18 +79,18 @@ public class Game {
     }
 
     private boolean isCurrentPlayerGettingOutOfPenaltyBox(int roll) {
-        if (this.rules.playerShouldGetOutOfPenaltyBox(roll)) {
+        if (this.rules.playerShouldContinueInPenaltyBox(roll)) {
 
             System.out.println(this.players.get(this.currentPlayer)
-                    + " is getting out of the penalty box");
+                    + " is not getting out of the penalty box");
 
-            return true;
+            return false;
         }
 
         System.out.println(this.players.get(this.currentPlayer)
-                + " is not getting out of the penalty box");
+                + " is getting out of the penalty box");
 
-        return false;
+        return true;
     }
 
     private void moveCurrentPlayer(int roll) {
