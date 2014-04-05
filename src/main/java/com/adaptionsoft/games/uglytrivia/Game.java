@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Random;
 
 public class Game {
-    ArrayList players = new ArrayList();
-
     LinkedList popQuestions = new LinkedList();
     LinkedList scienceQuestions = new LinkedList();
     LinkedList sportsQuestions = new LinkedList();
@@ -43,7 +41,7 @@ public class Game {
     }
 
     private void runOneTurn() {
-        System.out.println(this.players.get(this.currentPlayer) + " is the current player");
+        System.out.println(currentPlayer().name() + " is the current player");
 
         int roll = currentPlayerThrowDice();
 
@@ -75,7 +73,7 @@ public class Game {
         System.out.println("Answer was correct!!!!");
         // purses[currentPlayer]++;
         currentPlayer().winGoldCoin();
-        System.out.println(players.get(currentPlayer) + " now has " + currentPlayer().coins()
+        System.out.println(currentPlayer().name() + " now has " + currentPlayer().coins()
                 + " Gold Coins.");
         notAWinner = !currentPlayer().hasWonAccordingTo(rules);
     }
@@ -87,14 +85,12 @@ public class Game {
     private boolean isCurrentPlayerGettingOutOfPenaltyBox(int roll) {
         if (this.rules.playerShouldContinueInPenaltyBox(roll)) {
 
-            System.out.println(this.players.get(this.currentPlayer)
-                    + " is not getting out of the penalty box");
+            System.out.println(currentPlayer().name() + " is not getting out of the penalty box");
 
             return false;
         }
 
-        System.out.println(this.players.get(this.currentPlayer)
-                + " is getting out of the penalty box");
+        System.out.println(currentPlayer().name() + " is getting out of the penalty box");
 
         return true;
     }
@@ -108,8 +104,8 @@ public class Game {
 
         currentPlayer().moveTo(place);
 
-        System.out.println(this.players.get(this.currentPlayer) + "'s new location is "
-                + currentPlayer().place());
+        System.out
+                .println(currentPlayer().name() + "'s new location is " + currentPlayer().place());
         System.out.println("The category is " + this.currentCategory());
     }
 
@@ -130,10 +126,8 @@ public class Game {
 
     public boolean add(String playerName) {
         playersList.add(new Player(playerName));
-        players.add(playerName);
-
         System.out.println(playerName + " was added");
-        System.out.println("They are player number " + players.size());
+        System.out.println("They are player number " + playersList.size());
         return true;
     }
 
@@ -172,14 +166,14 @@ public class Game {
 
     private void reactToWrongAnswer() {
         System.out.println("Question was incorrectly answered");
-        System.out.println(players.get(currentPlayer) + " was sent to the penalty box");
+        System.out.println(currentPlayer().name() + " was sent to the penalty box");
         currentPlayer().enterPenaltyBox();
         notAWinner = true;
     }
 
     private void nextPlayer() {
         currentPlayer++;
-        if (currentPlayer == players.size())
+        if (currentPlayer == playersList.size())
             currentPlayer = 0;
     }
 }

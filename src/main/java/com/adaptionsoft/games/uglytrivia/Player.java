@@ -50,4 +50,8 @@ public class Player {
         this.inPenaltyBox = false;
 
     }
+
+    public String name() {
+        return this.name;
+    }
 }
