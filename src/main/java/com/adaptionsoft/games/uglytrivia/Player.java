@@ -17,4 +17,8 @@ public class Player {
     public int place() {
         return this.place;
     }
+
+    public boolean isAt(int place) {
+        return this.place == place;
+    }
 }

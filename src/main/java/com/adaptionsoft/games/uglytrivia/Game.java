@@ -185,7 +185,7 @@ public class Game {
     }
 
     private boolean currentPlayerIsAt(int place) {
-        return getCurrentPlayerPlace() == place;
+        return currentPlayer().isAt(place);
     }
 
     private void reactToWrongAnswer() {
