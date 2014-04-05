@@ -104,8 +104,8 @@ public class Game {
         return playersList.get(currentPlayer);
     }
 
-    private void advancePlayerBy(int roll) {
-        int place = computeNewPositionInBoard(roll);
+    private void advancePlayerBy(int places) {
+        int place = advanceInBoard(places);
 
         currentPlayer().moveTo(place);
 
@@ -114,11 +114,11 @@ public class Game {
         System.out.println("The category is " + this.currentCategory());
     }
 
-    private int computeNewPositionInBoard(int roll) {
-        int place = currentPlayer().place() + roll;
-        final int BOARDS_LOCATIONS_NUMBER = 12;
-        if (place > BOARDS_LOCATIONS_NUMBER - 1) {
-            place = place - BOARDS_LOCATIONS_NUMBER;
+    private int advanceInBoard(int places) {
+        int place = currentPlayer().place() + places;
+        final int BOARDS_PLACES_NUMBER = 12;
+        if (place > BOARDS_PLACES_NUMBER - 1) {
+            place = place - BOARDS_PLACES_NUMBER;
         }
         return place;
     }
