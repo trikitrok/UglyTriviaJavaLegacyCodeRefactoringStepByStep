@@ -94,9 +94,14 @@ public class Game {
     }
 
     private void moveCurrentPlayer(int roll) {
+        final int BOARDS_LOCATIONS_NUMBER = 12;
+
         this.places[this.currentPlayer] = this.places[this.currentPlayer] + roll;
-        if (this.places[this.currentPlayer] > 11)
-            this.places[this.currentPlayer] = this.places[this.currentPlayer] - 12;
+
+        if (this.places[this.currentPlayer] > BOARDS_LOCATIONS_NUMBER - 1) {
+            this.places[this.currentPlayer] = this.places[this.currentPlayer]
+                    - BOARDS_LOCATIONS_NUMBER;
+        }
 
         System.out.println(this.players.get(this.currentPlayer) + "'s new location is "
                 + this.places[this.currentPlayer]);
