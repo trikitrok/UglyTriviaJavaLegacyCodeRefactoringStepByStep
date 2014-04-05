@@ -78,7 +78,7 @@ public class Game {
         currentPlayer().winGoldCoin();
         System.out.println(players.get(currentPlayer) + " now has " + currentPlayer().coins()
                 + " Gold Coins.");
-        notAWinner = !aPlayerHasWon();
+        notAWinner = !currentPlayer().hasWonAccordingTo(rules);
     }
 
     private boolean answerWasWrong() {
@@ -191,10 +191,5 @@ public class Game {
         currentPlayer++;
         if (currentPlayer == players.size())
             currentPlayer = 0;
-    }
-
-    private boolean aPlayerHasWon() {
-        // return this.rules.playerHasWon(purses[currentPlayer]);
-        return currentPlayer().hasWonAccordingTo(rules);
     }
 }
