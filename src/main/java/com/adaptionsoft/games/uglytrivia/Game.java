@@ -18,6 +18,8 @@ public class Game {
     int currentPlayer = 0;
     boolean isGettingOutOfPenaltyBox;
 
+    boolean notAWinner = true;
+
     private Random rand;
 
     private Rules rules;
@@ -36,13 +38,11 @@ public class Game {
     }
 
     public void run() {
-        boolean notAWinner = true;
-
         do {
             this.roll(rand.nextInt(5) + 1);
 
             if (rand.nextInt(9) == 7) {
-                notAWinner = this.wrongAnswer();
+                this.responseToWrongAnswer();
             } else {
                 notAWinner = this.wasCorrectlyAnswered();
             }
@@ -173,7 +173,7 @@ public class Game {
         }
     }
 
-    private boolean wrongAnswer() {
+    private void responseToWrongAnswer() {
         System.out.println("Question was incorrectly answered");
         System.out.println(players.get(currentPlayer) + " was sent to the penalty box");
         inPenaltyBox[currentPlayer] = true;
@@ -181,7 +181,8 @@ public class Game {
         currentPlayer++;
         if (currentPlayer == players.size())
             currentPlayer = 0;
-        return true;
+
+        notAWinner = true;
     }
 
     private boolean didPlayerWin() {
