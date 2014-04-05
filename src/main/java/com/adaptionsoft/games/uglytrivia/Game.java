@@ -54,7 +54,6 @@ public class Game {
             if (isGettingOutOfPenaltyBox == true) {
                 moveAndAskQuestionToCurrentPlayer(roll);
             }
-
         } else {
             moveAndAskQuestionToCurrentPlayer(roll);
         }
@@ -65,14 +64,14 @@ public class Game {
     }
 
     private void reactToAnswer() {
-        if (answerWasCorrect()) {
+        if (answerWasWrong()) {
             reactToWrongAnswer();
         } else {
             reactToCorrectAnswer();
         }
     }
 
-    private boolean answerWasCorrect() {
+    private boolean answerWasWrong() {
         return rand.nextInt(9) == 7;
     }
 
@@ -93,6 +92,7 @@ public class Game {
 
         System.out.println(this.players.get(this.currentPlayer)
                 + " is not getting out of the penalty box");
+
         return false;
     }
 
