@@ -49,7 +49,7 @@ public class Game {
 
         if (playerCanUseThisTurn(roll)) {
 
-            moveCurrentPlayer(roll);
+            movePlayer(roll);
 
             askQuestion();
 
@@ -76,7 +76,7 @@ public class Game {
         purses[currentPlayer]++;
         System.out.println(players.get(currentPlayer) + " now has " + purses[currentPlayer]
                 + " Gold Coins.");
-        notAWinner = !currentPlayerHasWon();
+        notAWinner = !aPlayerHasWon();
     }
 
     private boolean answerWasWrong() {
@@ -98,7 +98,7 @@ public class Game {
         return true;
     }
 
-    private void moveCurrentPlayer(int roll) {
+    private void movePlayer(int roll) {
         final int BOARDS_LOCATIONS_NUMBER = 12;
 
         this.places[this.currentPlayer] = this.places[this.currentPlayer] + roll;
@@ -185,7 +185,7 @@ public class Game {
             currentPlayer = 0;
     }
 
-    private boolean currentPlayerHasWon() {
+    private boolean aPlayerHasWon() {
         return this.rules.playerHasWon(purses[currentPlayer]);
     }
 }
