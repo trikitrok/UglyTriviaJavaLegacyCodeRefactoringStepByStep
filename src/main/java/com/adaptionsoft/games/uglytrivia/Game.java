@@ -13,16 +13,15 @@ public class Game {
 
     int currentPlayer = 0;
 
-    List<Player> playersList;
+    List<Player> players;
 
     boolean notAWinner = true;
 
     private Random rand;
-
     private Rules rules;
 
     public Game(Random rand) {
-        playersList = new ArrayList<Player>();
+        players = new ArrayList<Player>();
         this.rules = new Rules();
         this.rand = rand;
 
@@ -71,10 +70,7 @@ public class Game {
 
     private void reactToCorrectAnswer() {
         System.out.println("Answer was correct!!!!");
-        // purses[currentPlayer]++;
         currentPlayer().winGoldCoin();
-        System.out.println(currentPlayer().name() + " now has " + currentPlayer().coins()
-                + " Gold Coins.");
         notAWinner = !currentPlayer().hasWonAccordingTo(rules);
     }
 
@@ -96,7 +92,7 @@ public class Game {
     }
 
     private Player currentPlayer() {
-        return playersList.get(currentPlayer);
+        return players.get(currentPlayer);
     }
 
     private void advancePlayerBy(int places) {
@@ -125,9 +121,9 @@ public class Game {
     }
 
     public boolean add(String playerName) {
-        playersList.add(new Player(playerName));
+        players.add(new Player(playerName));
         System.out.println(playerName + " was added");
-        System.out.println("They are player number " + playersList.size());
+        System.out.println("They are player number " + players.size());
         return true;
     }
 
@@ -173,7 +169,7 @@ public class Game {
 
     private void nextPlayer() {
         currentPlayer++;
-        if (currentPlayer == playersList.size())
+        if (currentPlayer == players.size())
             currentPlayer = 0;
     }
 }

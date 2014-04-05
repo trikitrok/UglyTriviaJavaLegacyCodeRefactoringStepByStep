@@ -28,14 +28,11 @@ public class Player {
 
     public void winGoldCoin() {
         this.goldCoins++;
+        System.out.println(this.name + " now has " + this.goldCoins + " Gold Coins.");
     }
 
     public boolean hasWonAccordingTo(Rules rules) {
         return rules.playerHasWon(this.goldCoins);
-    }
-
-    public Object coins() {
-        return this.goldCoins;
     }
 
     public boolean inPenaltyBox() {
