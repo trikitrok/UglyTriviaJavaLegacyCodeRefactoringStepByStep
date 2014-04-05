@@ -7,7 +7,6 @@ import java.util.Random;
 
 public class Game {
     ArrayList players = new ArrayList();
-    int[] places = new int[6];
     int[] purses = new int[6];
     boolean[] inPenaltyBox = new boolean[6];
 
@@ -101,12 +100,16 @@ public class Game {
         return true;
     }
 
+    private Player currentPlayer() {
+        return playersList.get(currentPlayer);
+    }
+
     private int getCurrentPlayerPlace() {
-        return this.places[this.currentPlayer];
+        return currentPlayer().place();
     }
 
     private void setCurrentPlayerPlace(int newPlace) {
-        this.places[this.currentPlayer] = newPlace;
+        currentPlayer().moveTo(newPlace);
     }
 
     private void movePlayer(int roll) {
@@ -136,7 +139,6 @@ public class Game {
     public boolean add(String playerName) {
         playersList.add(new Player(playerName));
         players.add(playerName);
-        places[howManyPlayers()] = 0;
         purses[howManyPlayers()] = 0;
         inPenaltyBox[howManyPlayers()] = false;
 

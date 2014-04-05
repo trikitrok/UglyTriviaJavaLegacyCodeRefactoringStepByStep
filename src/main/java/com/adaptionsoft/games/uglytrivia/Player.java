@@ -10,4 +10,11 @@ public class Player {
         this.place = 0;
     }
 
+    public void moveTo(int newPlace) {
+        this.place = newPlace;
+    }
+
+    public int place() {
+        return this.place;
+    }
 }
