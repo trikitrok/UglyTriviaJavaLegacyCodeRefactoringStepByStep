@@ -131,7 +131,6 @@ public class Game {
     public boolean add(String playerName) {
         playersList.add(new Player(playerName));
         players.add(playerName);
-        currentPlayer().getOutOfPenaltyBox();
 
         System.out.println(playerName + " was added");
         System.out.println("They are player number " + players.size());
