@@ -162,14 +162,10 @@ public class Game {
 
                 notAWinner = !currentPlayerHasWon();
 
-                currentPlayer++;
-                if (currentPlayer == players.size())
-                    currentPlayer = 0;
+                nextPlayer();
 
             } else {
-                currentPlayer++;
-                if (currentPlayer == players.size())
-                    currentPlayer = 0;
+                nextPlayer();
                 notAWinner = true;
             }
 
@@ -182,9 +178,7 @@ public class Game {
 
             notAWinner = !currentPlayerHasWon();
 
-            currentPlayer++;
-            if (currentPlayer == players.size())
-                currentPlayer = 0;
+            nextPlayer();
 
         }
     }
@@ -194,11 +188,15 @@ public class Game {
         System.out.println(players.get(currentPlayer) + " was sent to the penalty box");
         inPenaltyBox[currentPlayer] = true;
 
+        nextPlayer();
+
+        notAWinner = true;
+    }
+
+    private void nextPlayer() {
         currentPlayer++;
         if (currentPlayer == players.size())
             currentPlayer = 0;
-
-        notAWinner = true;
     }
 
     private boolean currentPlayerHasWon() {
