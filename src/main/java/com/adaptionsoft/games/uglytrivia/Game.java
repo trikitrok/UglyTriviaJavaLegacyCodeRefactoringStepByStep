@@ -2,6 +2,7 @@ package com.adaptionsoft.games.uglytrivia;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 public class Game {
@@ -17,6 +18,8 @@ public class Game {
 
     int currentPlayer = 0;
 
+    List<Player> playersList;
+
     boolean notAWinner = true;
 
     private Random rand;
@@ -24,7 +27,7 @@ public class Game {
     private Rules rules;
 
     public Game(Random rand) {
-
+        playersList = new ArrayList<Player>();
         this.rules = new Rules();
         this.rand = rand;
 
@@ -124,7 +127,7 @@ public class Game {
     }
 
     public boolean add(String playerName) {
-
+        playersList.add(new Player(playerName));
         players.add(playerName);
         places[howManyPlayers()] = 0;
         purses[howManyPlayers()] = 0;
