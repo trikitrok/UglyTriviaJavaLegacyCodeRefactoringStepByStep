@@ -44,7 +44,7 @@ public class Game {
             if (rand.nextInt(9) == 7) {
                 this.responseToWrongAnswer();
             } else {
-                notAWinner = this.wasCorrectlyAnswered();
+                this.responseToCorrectAnswer();
             }
         } while (notAWinner);
     }
@@ -136,7 +136,7 @@ public class Game {
         return "Rock";
     }
 
-    private boolean wasCorrectlyAnswered() {
+    private void responseToCorrectAnswer() {
         if (inPenaltyBox[currentPlayer]) {
             if (isGettingOutOfPenaltyBox) {
                 System.out.println("Answer was correct!!!!");
@@ -144,17 +144,17 @@ public class Game {
                 System.out.println(players.get(currentPlayer) + " now has " + purses[currentPlayer]
                         + " Gold Coins.");
 
-                boolean winner = didPlayerWin();
+                notAWinner = !currentPlayerHasWon();
+
                 currentPlayer++;
                 if (currentPlayer == players.size())
                     currentPlayer = 0;
 
-                return winner;
             } else {
                 currentPlayer++;
                 if (currentPlayer == players.size())
                     currentPlayer = 0;
-                return true;
+                notAWinner = true;
             }
 
         } else {
@@ -164,12 +164,12 @@ public class Game {
             System.out.println(players.get(currentPlayer) + " now has " + purses[currentPlayer]
                     + " Gold Coins.");
 
-            boolean winner = didPlayerWin();
+            notAWinner = !currentPlayerHasWon();
+
             currentPlayer++;
             if (currentPlayer == players.size())
                 currentPlayer = 0;
 
-            return winner;
         }
     }
 
@@ -185,7 +185,7 @@ public class Game {
         notAWinner = true;
     }
 
-    private boolean didPlayerWin() {
-        return !(purses[currentPlayer] == 6);
+    private boolean currentPlayerHasWon() {
+        return (purses[currentPlayer] == 6);
     }
 }
