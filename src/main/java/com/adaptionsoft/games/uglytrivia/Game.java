@@ -101,18 +101,25 @@ public class Game {
         return true;
     }
 
+    private int getCurrentPlayerPlace() {
+        return this.places[this.currentPlayer];
+    }
+
+    private void setCurrentPlayerPlace(int newPlace) {
+        this.places[this.currentPlayer] = newPlace;
+    }
+
     private void movePlayer(int roll) {
         final int BOARDS_LOCATIONS_NUMBER = 12;
 
-        this.places[this.currentPlayer] = this.places[this.currentPlayer] + roll;
+        setCurrentPlayerPlace(getCurrentPlayerPlace() + roll);
 
-        if (this.places[this.currentPlayer] > BOARDS_LOCATIONS_NUMBER - 1) {
-            this.places[this.currentPlayer] = this.places[this.currentPlayer]
-                    - BOARDS_LOCATIONS_NUMBER;
+        if (getCurrentPlayerPlace() > BOARDS_LOCATIONS_NUMBER - 1) {
+            setCurrentPlayerPlace(getCurrentPlayerPlace() - BOARDS_LOCATIONS_NUMBER);
         }
 
         System.out.println(this.players.get(this.currentPlayer) + "'s new location is "
-                + this.places[this.currentPlayer]);
+                + getCurrentPlayerPlace());
         System.out.println("The category is " + this.currentCategory());
     }
 
@@ -154,23 +161,23 @@ public class Game {
     }
 
     private String currentCategory() {
-        if (places[currentPlayer] == 0)
+        if (getCurrentPlayerPlace() == 0)
             return "Pop";
-        if (places[currentPlayer] == 4)
+        if (getCurrentPlayerPlace() == 4)
             return "Pop";
-        if (places[currentPlayer] == 8)
+        if (getCurrentPlayerPlace() == 8)
             return "Pop";
-        if (places[currentPlayer] == 1)
+        if (getCurrentPlayerPlace() == 1)
             return "Science";
-        if (places[currentPlayer] == 5)
+        if (getCurrentPlayerPlace() == 5)
             return "Science";
-        if (places[currentPlayer] == 9)
+        if (getCurrentPlayerPlace() == 9)
             return "Science";
-        if (places[currentPlayer] == 2)
+        if (getCurrentPlayerPlace() == 2)
             return "Sports";
-        if (places[currentPlayer] == 6)
+        if (getCurrentPlayerPlace() == 6)
             return "Sports";
-        if (places[currentPlayer] == 10)
+        if (getCurrentPlayerPlace() == 10)
             return "Sports";
         return "Rock";
     }
