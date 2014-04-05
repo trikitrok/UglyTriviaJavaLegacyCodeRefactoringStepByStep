@@ -45,11 +45,10 @@ public class Game {
         int roll = currentPlayerThrowDice();
 
         if (currentPlayer().inPenaltyBox()) {
-            tryToGetPlayerOutOfPenaltyBox(roll);
+            currentPlayer().tryToGetOutOfPenaltyBox(roll, this.rules);
         }
 
         if (!currentPlayer().inPenaltyBox()) {
-
             advancePlayerBy(roll);
 
             askQuestion();
@@ -58,15 +57,6 @@ public class Game {
         }
 
         nextPlayer();
-    }
-
-    private void tryToGetPlayerOutOfPenaltyBox(int roll) {
-        if (!this.rules.playerShouldContinueInPenaltyBox(roll)) {
-            currentPlayer().getOutOfPenaltyBox();
-            System.out.println(currentPlayer().name() + " is getting out of the penalty box");
-        } else {
-            System.out.println(currentPlayer().name() + " is not getting out of the penalty box");
-        }
     }
 
     private void reactToAnswer() {
