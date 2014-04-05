@@ -104,26 +104,23 @@ public class Game {
         return playersList.get(currentPlayer);
     }
 
-    private int getCurrentPlayerPlace() {
-        return currentPlayer().place();
-    }
-
-    private void setCurrentPlayerPlace(int newPlace) {
-        currentPlayer().moveTo(newPlace);
-    }
-
     private void movePlayer(int roll) {
-        final int BOARDS_LOCATIONS_NUMBER = 12;
+        int place = computeNewPositionInBoard(roll);
 
-        setCurrentPlayerPlace(getCurrentPlayerPlace() + roll);
-
-        if (getCurrentPlayerPlace() > BOARDS_LOCATIONS_NUMBER - 1) {
-            setCurrentPlayerPlace(getCurrentPlayerPlace() - BOARDS_LOCATIONS_NUMBER);
-        }
+        currentPlayer().moveTo(place);
 
         System.out.println(this.players.get(this.currentPlayer) + "'s new location is "
-                + getCurrentPlayerPlace());
+                + currentPlayer().place());
         System.out.println("The category is " + this.currentCategory());
+    }
+
+    private int computeNewPositionInBoard(int roll) {
+        int place = currentPlayer().place() + roll;
+        final int BOARDS_LOCATIONS_NUMBER = 12;
+        if (place > BOARDS_LOCATIONS_NUMBER - 1) {
+            place = place - BOARDS_LOCATIONS_NUMBER;
+        }
+        return place;
     }
 
     private boolean currentPlayerInPenaltyBox() {
