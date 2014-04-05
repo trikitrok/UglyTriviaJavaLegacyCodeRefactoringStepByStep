@@ -44,18 +44,15 @@ public class Game {
             int roll = throwDice();
 
             if (currentPlayerInPenaltyBox()) {
-                if (this.rules.shouldGetOutOfPenaltyBox(roll)) {
+                if (this.rules.playerShouldGetOutOfPenaltyBox(roll)) {
                     this.isGettingOutOfPenaltyBox = true;
-
                     System.out.println(this.players.get(this.currentPlayer)
                             + " is getting out of the penalty box");
-                    this.places[this.currentPlayer] = this.places[this.currentPlayer] + roll;
-                    if (this.places[this.currentPlayer] > 11)
-                        this.places[this.currentPlayer] = this.places[this.currentPlayer] - 12;
 
-                    System.out.println(this.players.get(this.currentPlayer) + "'s new location is "
-                            + this.places[this.currentPlayer]);
+                    moveCurrentPlayer(roll);
+
                     System.out.println("The category is " + this.currentCategory());
+
                     this.askQuestion();
                 } else {
                     System.out.println(this.players.get(this.currentPlayer)
@@ -65,12 +62,7 @@ public class Game {
 
             } else {
 
-                this.places[this.currentPlayer] = this.places[this.currentPlayer] + roll;
-                if (this.places[this.currentPlayer] > 11)
-                    this.places[this.currentPlayer] = this.places[this.currentPlayer] - 12;
-
-                System.out.println(this.players.get(this.currentPlayer) + "'s new location is "
-                        + this.places[this.currentPlayer]);
+                moveCurrentPlayer(roll);
                 System.out.println("The category is " + this.currentCategory());
                 this.askQuestion();
             }
@@ -81,6 +73,15 @@ public class Game {
                 this.responseToCorrectAnswer();
             }
         } while (notAWinner);
+    }
+
+    private void moveCurrentPlayer(int roll) {
+        this.places[this.currentPlayer] = this.places[this.currentPlayer] + roll;
+        if (this.places[this.currentPlayer] > 11)
+            this.places[this.currentPlayer] = this.places[this.currentPlayer] - 12;
+
+        System.out.println(this.players.get(this.currentPlayer) + "'s new location is "
+                + this.places[this.currentPlayer]);
     }
 
     private boolean currentPlayerInPenaltyBox() {
