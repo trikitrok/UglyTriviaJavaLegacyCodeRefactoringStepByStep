@@ -26,7 +26,7 @@ public class Game {
         do {
             nextPlayer();
             playTurn();
-        } while (!currentPlayer.hasWonAccordingTo(rules));
+        } while (noPlayerHasWon());
     }
 
     private void playTurn() {
@@ -93,5 +93,9 @@ public class Game {
 
     private void nextPlayer() {
         currentPlayer = players.next();
+    }
+
+    private boolean noPlayerHasWon() {
+        return !currentPlayer.hasWonAccordingTo(rules);
     }
 }
