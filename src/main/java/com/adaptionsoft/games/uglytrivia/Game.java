@@ -21,28 +21,35 @@ public class Game {
 
     public void run() {
         do {
-            runOneTurn();
+            playTurn();
+
+            nextPlayer();
         } while (notAWinner);
     }
 
-    private void runOneTurn() {
+    private void playTurn() {
         System.out.println(currentPlayer().name() + " is the current player");
 
-        int roll = currentPlayerThrowDice();
+        int roll = throwDice();
 
         if (currentPlayer().inPenaltyBox()) {
             currentPlayer().tryToGetOutOfPenaltyBox(roll, this.rules);
         }
 
-        if (!currentPlayer().inPenaltyBox()) {
-            advancePlayerBy(roll);
+        play(roll);
 
-            askQuestion();
+        notAWinner = !currentPlayer().hasWonAccordingTo(rules);
+    }
 
-            reactToAnswer();
-        }
+    private void play(int roll) {
+        if (currentPlayer().inPenaltyBox())
+            return;
 
-        players.next();
+        advancePlayerBy(roll);
+
+        askQuestion();
+
+        reactToAnswer();
     }
 
     private void reactToAnswer() {
@@ -56,13 +63,11 @@ public class Game {
     private void reactToWrongAnswer() {
         System.out.println("Question was incorrectly answered");
         currentPlayer().enterPenaltyBox();
-        notAWinner = true;
     }
 
     private void reactToCorrectAnswer() {
         System.out.println("Answer was correct!!!!");
         currentPlayer().winGoldCoin();
-        notAWinner = !currentPlayer().hasWonAccordingTo(rules);
     }
 
     private boolean answerWasWrong() {
@@ -78,7 +83,7 @@ public class Game {
         System.out.println("The category is " + this.currentCategory());
     }
 
-    private int currentPlayerThrowDice() {
+    private int throwDice() {
         int roll = rand.nextInt(5) + 1;
         System.out.println("They have rolled a " + roll);
         return roll;
@@ -90,5 +95,9 @@ public class Game {
 
     private Category currentCategory() {
         return board.categoryAt(currentPlayer().place());
+    }
+
+    private void nextPlayer() {
+        players.next();
     }
 }
