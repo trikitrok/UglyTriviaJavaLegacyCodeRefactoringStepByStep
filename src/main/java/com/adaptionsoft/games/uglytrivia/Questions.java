@@ -1,35 +1,29 @@
 package com.adaptionsoft.games.uglytrivia;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 public class Questions {
-    LinkedList<String> popQuestions = new LinkedList<String>();
-    LinkedList<String> scienceQuestions = new LinkedList<String>();
-    LinkedList<String> sportsQuestions = new LinkedList<String>();
-    LinkedList<String> rockQuestions = new LinkedList<String>();
+    Map<Category, LinkedList<String>> questionsByCategory;
 
     public Questions() {
+        questionsByCategory = new HashMap<Category, LinkedList<String>>();
+        questionsByCategory.put(Category.Pop, new LinkedList<String>());
+        questionsByCategory.put(Category.Science, new LinkedList<String>());
+        questionsByCategory.put(Category.Sports, new LinkedList<String>());
+        questionsByCategory.put(Category.Rock, new LinkedList<String>());
+
         for (int i = 0; i < 50; i++) {
-            popQuestions.addLast("Pop Question " + i);
-            scienceQuestions.addLast(("Science Question " + i));
-            sportsQuestions.addLast(("Sports Question " + i));
-            rockQuestions.addLast("Rock Question " + i);
+            questionsByCategory.get(Category.Pop).addLast("Pop Question " + i);
+            questionsByCategory.get(Category.Science).addLast("Science Question " + i);
+            questionsByCategory.get(Category.Sports).addLast("Sports Question " + i);
+            questionsByCategory.get(Category.Rock).addLast("Rock Question " + i);
         }
     }
 
-    public String nextQuestionAbout(String category) {
-        String question = "";
-
-        if (category == "Pop")
-            question = popQuestions.removeFirst();
-        if (category == "Science")
-            question = scienceQuestions.removeFirst();
-        if (category == "Sports")
-            question = sportsQuestions.removeFirst();
-        if (category == "Rock")
-            question = rockQuestions.removeFirst();
-
-        return question;
+    public String nextQuestionAbout(Category category) {
+        return questionsByCategory.get(category).removeFirst();
     }
 
 }

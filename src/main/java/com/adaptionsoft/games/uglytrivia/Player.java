@@ -53,4 +53,8 @@ public class Player {
         this.place = board.getPlaceAhead(this.place, places);
         System.out.println(this.name + "'s new location is " + this.place);
     }
+
+    public int place() {
+        return this.place;
+    }
 }

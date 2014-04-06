@@ -3,13 +3,12 @@ package com.adaptionsoft.games.uglytrivia;
 import java.util.Random;
 
 public class Game {
-    boolean notAWinner = true;
 
+    boolean notAWinner = true;
     private Random rand;
     private Rules rules;
-    Players players;
-    Questions questions;
-
+    private Players players;
+    private Questions questions;
     private Board board;
 
     public Game(Random rand, Players players) {
@@ -54,6 +53,12 @@ public class Game {
         }
     }
 
+    private void reactToWrongAnswer() {
+        System.out.println("Question was incorrectly answered");
+        currentPlayer().enterPenaltyBox();
+        notAWinner = true;
+    }
+
     private void reactToCorrectAnswer() {
         System.out.println("Answer was correct!!!!");
         currentPlayer().winGoldCoin();
@@ -83,31 +88,7 @@ public class Game {
         System.out.println(questions.nextQuestionAbout(currentCategory()));
     }
 
-    private String currentCategory() {
-        if (currentPlayer().isAt(0))
-            return "Pop";
-        if (currentPlayer().isAt(4))
-            return "Pop";
-        if (currentPlayer().isAt(8))
-            return "Pop";
-        if (currentPlayer().isAt(1))
-            return "Science";
-        if (currentPlayer().isAt(5))
-            return "Science";
-        if (currentPlayer().isAt(9))
-            return "Science";
-        if (currentPlayer().isAt(2))
-            return "Sports";
-        if (currentPlayer().isAt(6))
-            return "Sports";
-        if (currentPlayer().isAt(10))
-            return "Sports";
-        return "Rock";
-    }
-
-    private void reactToWrongAnswer() {
-        System.out.println("Question was incorrectly answered");
-        currentPlayer().enterPenaltyBox();
-        notAWinner = true;
+    private Category currentCategory() {
+        return board.categoryAt(currentPlayer().place());
     }
 }
