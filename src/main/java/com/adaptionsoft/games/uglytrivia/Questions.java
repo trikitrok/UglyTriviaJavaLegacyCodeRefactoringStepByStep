@@ -14,6 +14,14 @@ public class Questions {
         questionsByCategory.put(Category.Sports, new LinkedList<String>());
         questionsByCategory.put(Category.Rock, new LinkedList<String>());
 
+        initializeQuestionsByCategory();
+    }
+
+    public String nextQuestionAbout(Category category) {
+        return questionsByCategory.get(category).removeFirst();
+    }
+
+    private void initializeQuestionsByCategory() {
         for (int i = 0; i < 50; i++) {
             questionsByCategory.get(Category.Pop).addLast("Pop Question " + i);
             questionsByCategory.get(Category.Science).addLast("Science Question " + i);
@@ -21,9 +29,4 @@ public class Questions {
             questionsByCategory.get(Category.Rock).addLast("Rock Question " + i);
         }
     }
-
-    public String nextQuestionAbout(Category category) {
-        return questionsByCategory.get(category).removeFirst();
-    }
-
 }
