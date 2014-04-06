@@ -24,7 +24,8 @@ public class Game {
 
     public void run() {
         do {
-            nextPlayer().playTurn();
+            nextPlayer();
+            playTurn();
         } while (noPlayerHasWon());
     }
 
@@ -90,9 +91,8 @@ public class Game {
         return board.categoryAt(currentPlayer.place());
     }
 
-    private Game nextPlayer() {
+    private void nextPlayer() {
         currentPlayer = players.next();
-        return this;
     }
 
     private boolean noPlayerHasWon() {
