@@ -14,10 +14,6 @@ public class Player {
         this.inPenaltyBox = false;
     }
 
-    public boolean isAt(int place) {
-        return this.place == place;
-    }
-
     public void winGoldCoin() {
         this.goldCoins++;
         System.out.println(this.name + " now has " + this.goldCoins + " Gold Coins.");
