@@ -9,8 +9,12 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.adaptionsoft.games.uglytrivia.Board;
+import com.adaptionsoft.games.uglytrivia.Dice;
 import com.adaptionsoft.games.uglytrivia.Game;
 import com.adaptionsoft.games.uglytrivia.Players;
+import com.adaptionsoft.games.uglytrivia.Questions;
+import com.adaptionsoft.games.uglytrivia.Rules;
 
 public class RunCharacterizationTest {
 
@@ -28,11 +32,18 @@ public class RunCharacterizationTest {
 
     @Test
     public void rollCharacterizationForRollResult5() {
-        Game aGame = new Game(new Random(1234), new Players("Chet", "Pat", "Sue"));
+        Game game = createGame(1234);
 
-        aGame.run();
+        game.run();
 
         assertEquals(expectedOutput(), outputRedirection.getRedirectedOutput());
+    }
+
+    private Game createGame(int seed) {
+        Random rand = new Random(seed);
+        Game game = new Game(rand, new Players("Chet", "Pat", "Sue"), new Rules(), new Questions(),
+                new Board(), new Dice(rand));
+        return game;
     }
 
     private String expectedOutput() {

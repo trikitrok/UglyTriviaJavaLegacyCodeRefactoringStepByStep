@@ -12,13 +12,14 @@ public class Game {
     private Player currentPlayer;
     private Dice dice;
 
-    public Game(Random rand, Players players) {
+    public Game(Random rand, Players players, Rules rules, Questions questions, Board board,
+                Dice dice) {
         this.players = players;
-        this.rules = new Rules();
+        this.rules = rules;
         this.rand = rand;
-        this.questions = new Questions();
-        this.board = new Board();
-        this.dice = new Dice(rand);
+        this.questions = questions;
+        this.board = board;
+        this.dice = dice;
     }
 
     public void run() {
