@@ -26,7 +26,6 @@ public class Game {
         do {
             nextPlayer();
             playTurn();
-
         } while (!currentPlayer.hasWonAccordingTo(rules));
     }
 

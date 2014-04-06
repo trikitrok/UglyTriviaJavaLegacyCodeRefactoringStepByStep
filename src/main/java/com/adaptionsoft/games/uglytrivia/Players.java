@@ -25,8 +25,4 @@ public class Players {
         System.out.println(playerName + " was added");
         System.out.println("They are player number " + players.size());
     }
-
-    public Player getCurrentPlayer() {
-        return players.get(currentPlayer);
-    }
 }
