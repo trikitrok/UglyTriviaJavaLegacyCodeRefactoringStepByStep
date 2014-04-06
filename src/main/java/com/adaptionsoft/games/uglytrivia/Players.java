@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Players {
-    int currentPlayer = 0;
+    int currentPlayer = -1;
     List<Player> players = new ArrayList<Player>();
 
     public Players(String... playerNames) {
@@ -13,10 +13,11 @@ public class Players {
         }
     }
 
-    public void next() {
+    public Player next() {
         currentPlayer++;
         if (currentPlayer == players.size())
             currentPlayer = 0;
+        return players.get(currentPlayer);
     }
 
     public void add(String playerName) {

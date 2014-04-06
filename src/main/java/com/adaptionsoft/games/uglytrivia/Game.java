@@ -4,12 +4,13 @@ import java.util.Random;
 
 public class Game {
 
-    boolean notAWinner = true;
     private Random rand;
     private Rules rules;
     private Players players;
     private Questions questions;
     private Board board;
+    private Player currentPlayer;
+    private Dice dice;
 
     public Game(Random rand, Players players) {
         this.players = players;
@@ -17,32 +18,31 @@ public class Game {
         this.rand = rand;
         this.questions = new Questions();
         this.board = new Board();
+        this.dice = new Dice(rand);
     }
 
     public void run() {
         do {
+            nextPlayer();
             playTurn();
 
-            nextPlayer();
-        } while (notAWinner);
+        } while (!currentPlayer.hasWonAccordingTo(rules));
     }
 
     private void playTurn() {
-        System.out.println(currentPlayer().name() + " is the current player");
+        System.out.println(currentPlayer + " is the current player");
 
-        int roll = throwDice();
+        int roll = rollDice();
 
-        if (currentPlayer().inPenaltyBox()) {
-            currentPlayer().tryToGetOutOfPenaltyBox(roll, this.rules);
+        if (currentPlayer.inPenaltyBox()) {
+            currentPlayer.tryToGetOutOfPenaltyBox(roll, this.rules);
         }
 
         play(roll);
-
-        notAWinner = !currentPlayer().hasWonAccordingTo(rules);
     }
 
     private void play(int roll) {
-        if (currentPlayer().inPenaltyBox())
+        if (currentPlayer.inPenaltyBox())
             return;
 
         advancePlayerBy(roll);
@@ -62,31 +62,25 @@ public class Game {
 
     private void reactToWrongAnswer() {
         System.out.println("Question was incorrectly answered");
-        currentPlayer().enterPenaltyBox();
+        currentPlayer.enterPenaltyBox();
     }
 
     private void reactToCorrectAnswer() {
         System.out.println("Answer was correct!!!!");
-        currentPlayer().winGoldCoin();
+        currentPlayer.winGoldCoin();
     }
 
     private boolean answerWasWrong() {
         return rand.nextInt(9) == 7;
     }
 
-    private Player currentPlayer() {
-        return players.getCurrentPlayer();
-    }
-
     private void advancePlayerBy(int places) {
-        currentPlayer().advance(places, board);
+        currentPlayer.advance(places, board);
         System.out.println("The category is " + this.currentCategory());
     }
 
-    private int throwDice() {
-        int roll = rand.nextInt(5) + 1;
-        System.out.println("They have rolled a " + roll);
-        return roll;
+    private int rollDice() {
+        return this.dice.roll();
     }
 
     private void askQuestion() {
@@ -94,10 +88,10 @@ public class Game {
     }
 
     private Category currentCategory() {
-        return board.categoryAt(currentPlayer().place());
+        return board.categoryAt(currentPlayer.place());
     }
 
     private void nextPlayer() {
-        players.next();
+        currentPlayer = players.next();
     }
 }

@@ -32,10 +32,6 @@ public class Player {
         System.out.println(this.name + " was sent to the penalty box");
     }
 
-    public String name() {
-        return this.name;
-    }
-
     public void tryToGetOutOfPenaltyBox(int roll, Rules rules) {
         if (!rules.playerShouldContinueInPenaltyBox(roll)) {
             this.inPenaltyBox = false;
@@ -52,5 +48,9 @@ public class Player {
 
     public int place() {
         return this.place;
+    }
+
+    public String toString() {
+        return this.name;
     }
 }
