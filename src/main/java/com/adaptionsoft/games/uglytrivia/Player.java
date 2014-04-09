@@ -32,13 +32,8 @@ public class Player {
         System.out.println(this.name + " was sent to the penalty box");
     }
 
-    public void tryToGetOutOfPenaltyBox(int roll, Rules rules) {
-        if (!rules.playerShouldContinueInPenaltyBox(roll)) {
-            this.inPenaltyBox = false;
-            System.out.println(this.name + " is getting out of the penalty box");
-        } else {
-            System.out.println(this.name + " is not getting out of the penalty box");
-        }
+    public void getOutOfPenaltyBox() {
+        this.inPenaltyBox = false;
     }
 
     public void advance(int places, Board board) {

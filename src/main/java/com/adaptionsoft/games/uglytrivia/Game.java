@@ -35,7 +35,7 @@ public class Game {
         int roll = rollDice();
 
         if (currentPlayer.inPenaltyBox()) {
-            currentPlayer.tryToGetOutOfPenaltyBox(roll, this.rules);
+            tryToGetPlayerOutOfPenaltyBox(roll);
         }
 
         play(roll);
@@ -76,11 +76,11 @@ public class Game {
 
     private void advancePlayerBy(int places) {
         currentPlayer.advance(places, board);
-        System.out.println("The category is " + this.currentCategory());
+        System.out.println("The category is " + currentCategory());
     }
 
     private int rollDice() {
-        return this.dice.roll();
+        return dice.roll();
     }
 
     private void askQuestion() {
@@ -97,5 +97,14 @@ public class Game {
 
     private boolean noPlayerHasWon() {
         return !currentPlayer.hasWonAccordingTo(rules);
+    }
+
+    private void tryToGetPlayerOutOfPenaltyBox(int roll) {
+        if (!rules.playerShouldContinueInPenaltyBox(roll)) {
+            currentPlayer.getOutOfPenaltyBox();
+            System.out.println(currentPlayer + " is getting out of the penalty box");
+        } else {
+            System.out.println(currentPlayer + " is not getting out of the penalty box");
+        }
     }
 }
