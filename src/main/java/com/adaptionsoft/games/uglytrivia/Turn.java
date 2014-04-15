@@ -5,21 +5,19 @@ import java.util.Random;
 public class Turn {
     private Dice dice;
     private Random rand;
-    private Questions questions;
     private Board board;
     private Rules rules;
 
-    public Turn(Dice dice, Random rand, Questions questions, Board board, Rules rules) {
+    public Turn(Dice dice, Random rand, Board board, Rules rules) {
         super();
         this.dice = dice;
         this.rand = rand;
-        this.questions = questions;
         this.board = board;
         this.rules = rules;
     }
 
     public void play(Player player) {
-        int roll = rollDice();
+        int roll = dice.roll();
 
         ifInPenaltyBoxTryToGetOut(roll, player);
 
@@ -52,19 +50,11 @@ public class Turn {
     private void advance(int places, Player player) {
         player.advance(places, board);
         System.out.println(player + "'s new location is " + player.place());
-        System.out.println("The category is " + currentCategory(player.place()));
-    }
-
-    private int rollDice() {
-        return dice.roll();
+        System.out.println("The category is " + board.categoryAt(player.place()));
     }
 
     private void nextQuestionFor(Player player) {
-        System.out.println(questions.nextQuestionAbout(currentCategory(player.place())));
-    }
-
-    private Category currentCategory(int place) {
-        return board.categoryAt(place);
+        System.out.println(board.questionAt(player.place()));
     }
 
     private void ifInPenaltyBoxTryToGetOut(int roll, Player player) {

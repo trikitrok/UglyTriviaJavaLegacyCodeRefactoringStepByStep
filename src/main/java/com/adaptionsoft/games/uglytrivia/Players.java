@@ -1,9 +1,10 @@
 package com.adaptionsoft.games.uglytrivia;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class Players {
+public class Players implements Iterable<Player> {
     int currentPlayer = -1;
     List<Player> players = new ArrayList<Player>();
 
@@ -22,7 +23,10 @@ public class Players {
 
     public void add(String playerName) {
         players.add(new Player(playerName));
-        System.out.println(playerName + " was added");
-        System.out.println("They are player number " + players.size());
+    }
+
+    @Override
+    public Iterator<Player> iterator() {
+        return players.iterator();
     }
 }

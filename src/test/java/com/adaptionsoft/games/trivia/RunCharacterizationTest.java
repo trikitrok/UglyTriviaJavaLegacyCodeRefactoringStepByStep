@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.adaptionsoft.games.uglytrivia.Board;
+import com.adaptionsoft.games.uglytrivia.Categories;
 import com.adaptionsoft.games.uglytrivia.Dice;
 import com.adaptionsoft.games.uglytrivia.Game;
 import com.adaptionsoft.games.uglytrivia.Players;
@@ -42,8 +43,8 @@ public class RunCharacterizationTest {
 
     private Game createGame(int seed) {
         Random rand = new Random(seed);
-        Game game = new Game(new Players("Chet", "Pat", "Sue"), new Rules(), new Turn(new Dice(rand), rand, new Questions(),
-                new Board(), new Rules()));
+        Game game = new Game(new Players("Chet", "Pat", "Sue"), new Rules(), new Turn(
+                new Dice(rand), rand, new Board(new Categories(), new Questions()), new Rules()));
         return game;
     }
 
