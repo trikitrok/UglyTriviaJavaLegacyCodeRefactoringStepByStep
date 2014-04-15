@@ -1,18 +1,19 @@
 package com.adaptionsoft.games.uglytrivia;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
 
 public class Questions {
-    Map<Category, LinkedList<String>> questionsByCategory;
+    Map<Category, Deque<String>> questionsByCategory;
 
     public Questions() {
-        questionsByCategory = new HashMap<Category, LinkedList<String>>();
-        questionsByCategory.put(Category.Pop, new LinkedList<String>());
-        questionsByCategory.put(Category.Science, new LinkedList<String>());
-        questionsByCategory.put(Category.Sports, new LinkedList<String>());
-        questionsByCategory.put(Category.Rock, new LinkedList<String>());
+        questionsByCategory = new HashMap<Category, Deque<String>>();
+        questionsByCategory.put(Category.Pop, new ArrayDeque<String>());
+        questionsByCategory.put(Category.Science, new ArrayDeque<String>());
+        questionsByCategory.put(Category.Sports, new ArrayDeque<String>());
+        questionsByCategory.put(Category.Rock, new ArrayDeque<String>());
 
         initializeQuestionsByCategory();
     }
