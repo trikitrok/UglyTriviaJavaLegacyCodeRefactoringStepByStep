@@ -1,25 +1,16 @@
 package com.adaptionsoft.games.uglytrivia;
 
-import java.util.Random;
-
 public class Game {
 
-    private Random rand;
     private Rules rules;
     private Players players;
-    private Questions questions;
-    private Board board;
     private Player currentPlayer;
-    private Dice dice;
+    private Turn turn;
 
-    public Game(Random rand, Players players, Rules rules, Questions questions, Board board,
-                Dice dice) {
+    public Game(Players players, Rules rules, Turn turn) {
         this.players = players;
         this.rules = rules;
-        this.rand = rand;
-        this.questions = questions;
-        this.board = board;
-        this.dice = dice;
+        this.turn = turn;
     }
 
     public void run() {
@@ -30,81 +21,15 @@ public class Game {
     }
 
     private void playTurn() {
-        System.out.println(currentPlayer + " is the current player");
-
-        int roll = rollDice();
-
-        if (currentPlayer.inPenaltyBox()) {
-            tryToGetPlayerOutOfPenaltyBox(roll);
-        }
-
-        play(roll);
-    }
-
-    private void play(int roll) {
-        if (currentPlayer.inPenaltyBox())
-            return;
-
-        advancePlayerBy(roll);
-
-        askQuestion();
-
-        reactToAnswer();
-    }
-
-    private void reactToAnswer() {
-        if (answerWasWrong()) {
-            reactToWrongAnswer();
-        } else {
-            reactToCorrectAnswer();
-        }
-    }
-
-    private void reactToWrongAnswer() {
-        System.out.println("Question was incorrectly answered");
-        currentPlayer.enterPenaltyBox();
-    }
-
-    private void reactToCorrectAnswer() {
-        System.out.println("Answer was correct!!!!");
-        currentPlayer.winGoldCoin();
-    }
-
-    private boolean answerWasWrong() {
-        return rand.nextInt(9) == 7;
-    }
-
-    private void advancePlayerBy(int places) {
-        currentPlayer.advance(places, board);
-        System.out.println("The category is " + currentCategory());
-    }
-
-    private int rollDice() {
-        return dice.roll();
-    }
-
-    private void askQuestion() {
-        System.out.println(questions.nextQuestionAbout(currentCategory()));
-    }
-
-    private Category currentCategory() {
-        return board.categoryAt(currentPlayer.place());
+        turn.play(currentPlayer);
     }
 
     private void nextPlayer() {
         currentPlayer = players.next();
+        System.out.println(currentPlayer + " is the current player");
     }
 
     private boolean noPlayerHasWon() {
         return !currentPlayer.hasWonAccordingTo(rules);
-    }
-
-    private void tryToGetPlayerOutOfPenaltyBox(int roll) {
-        if (!rules.playerShouldContinueInPenaltyBox(roll)) {
-            currentPlayer.getOutOfPenaltyBox();
-            System.out.println(currentPlayer + " is getting out of the penalty box");
-        } else {
-            System.out.println(currentPlayer + " is not getting out of the penalty box");
-        }
     }
 }

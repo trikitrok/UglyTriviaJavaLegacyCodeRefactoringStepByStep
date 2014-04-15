@@ -16,7 +16,6 @@ public class Player {
 
     public void winGoldCoin() {
         this.goldCoins++;
-        System.out.println(this.name + " now has " + this.goldCoins + " Gold Coins.");
     }
 
     public boolean hasWonAccordingTo(Rules rules) {
@@ -29,7 +28,6 @@ public class Player {
 
     public void enterPenaltyBox() {
         this.inPenaltyBox = true;
-        System.out.println(this.name + " was sent to the penalty box");
     }
 
     public void getOutOfPenaltyBox() {
@@ -38,7 +36,6 @@ public class Player {
 
     public void advance(int places, Board board) {
         this.place = board.getPlaceAhead(this.place, places);
-        System.out.println(this.name + "'s new location is " + this.place);
     }
 
     public int place() {
@@ -47,5 +44,9 @@ public class Player {
 
     public String toString() {
         return this.name;
+    }
+
+    public int goldCoins() {
+        return this.goldCoins;
     }
 }

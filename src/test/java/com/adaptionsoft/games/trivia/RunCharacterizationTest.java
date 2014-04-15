@@ -15,6 +15,7 @@ import com.adaptionsoft.games.uglytrivia.Game;
 import com.adaptionsoft.games.uglytrivia.Players;
 import com.adaptionsoft.games.uglytrivia.Questions;
 import com.adaptionsoft.games.uglytrivia.Rules;
+import com.adaptionsoft.games.uglytrivia.Turn;
 
 public class RunCharacterizationTest {
 
@@ -41,8 +42,8 @@ public class RunCharacterizationTest {
 
     private Game createGame(int seed) {
         Random rand = new Random(seed);
-        Game game = new Game(rand, new Players("Chet", "Pat", "Sue"), new Rules(), new Questions(),
-                new Board(), new Dice(rand));
+        Game game = new Game(new Players("Chet", "Pat", "Sue"), new Rules(), new Turn(new Dice(rand), rand, new Questions(),
+                new Board(), new Rules()));
         return game;
     }
 
