@@ -1,6 +1,7 @@
 package com.adaptationsoft.games.trivia.tests.unit;
 
 import com.adaptionsoft.games.uglytrivia.*;
+import org.junit.Before;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -9,11 +10,18 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class PlayerShould {
+
+    private GameNotifications gameNotifications;
+    private Player player;
+
+    @Before
+    public void setUp() {
+        gameNotifications = mock(GameNotifications.class);
+        player = new Player("koko", gameNotifications);
+    }
+
     @Test
     public void notify_when_a_player_wins_gold_coins() {
-        GameNotifications gameNotifications = mock(GameNotifications.class);
-        Player player = new Player("koko", gameNotifications);
-
         player.winGoldCoin();
 
         verify(gameNotifications).playerWins(player);
@@ -21,21 +29,17 @@ public class PlayerShould {
 
     @Test
     public void notify_its_new_board_location_when_it_advances() {
-        GameNotifications gameNotifications = mock(GameNotifications.class);
-        Player player = new Player("koko", gameNotifications);
-
         player.advance(1, Board.create());
 
         verify(gameNotifications).newBoardLocation(
-                player, new BoardLocation(Category.Science, "Science Question 0")
+            player,
+            new BoardLocation(Category.Science, "Science Question 0")
         );
     }
 
     @Test
     public void notify_when_it_is_in_the_penalty_box_and_it_gets_out() {
         int anyOddRoll = 3;
-        GameNotifications gameNotifications = mock(GameNotifications.class);
-        Player player = new Player("koko", gameNotifications);
         player.enterPenaltyBox();
 
         player.tryToGetOutOfPenaltyBox(anyOddRoll, new Rules());
@@ -47,8 +51,6 @@ public class PlayerShould {
     @Test
     public void notify_when_it_is_in_the_penalty_box_and_it_does_not_get_out() {
         int anyEvenRoll = 4;
-        GameNotifications gameNotifications = mock(GameNotifications.class);
-        Player player = new Player("koko", gameNotifications);
         player.enterPenaltyBox();
 
         player.tryToGetOutOfPenaltyBox(anyEvenRoll, new Rules());
