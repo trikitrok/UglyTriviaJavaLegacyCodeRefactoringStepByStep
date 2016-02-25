@@ -5,15 +5,13 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Players implements Iterable<Player> {
-    GameNotifications gameNotifications = new ConsoleGameNotifications();
+    GameNotifications gameNotifications;
 
     int currentPlayerIndex = -1;
     List<Player> players = new ArrayList<Player>();
 
     public Players(String... playerNames) {
-        for (String playerName : playerNames) {
-            add(playerName);
-        }
+        this(new ConsoleGameNotifications(), playerNames);
     }
 
     public Players(GameNotifications gameNotifications, String... playerNames) {
