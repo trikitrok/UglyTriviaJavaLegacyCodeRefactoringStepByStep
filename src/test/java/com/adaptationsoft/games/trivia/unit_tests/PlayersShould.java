@@ -56,9 +56,7 @@ public class PlayersShould {
         GameNotifications gameNotifications = mock(GameNotifications.class);
         InOrder inOrder = inOrder(gameNotifications);
 
-        Players players = new Players("Chet", "Pat", "Sue");
-
-        players.setGameNotifications(gameNotifications);
+        Players players = new Players(gameNotifications, "Chet", "Pat", "Sue");
 
         players.next();
         players.next();

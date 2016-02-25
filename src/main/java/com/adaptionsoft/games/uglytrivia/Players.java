@@ -55,8 +55,4 @@ public class Players implements Iterable<Player> {
     public Iterator<Player> iterator() {
         return players.iterator();
     }
-
-    public void setGameNotifications(GameNotifications gameNotifications) {
-        this.gameNotifications = gameNotifications;
-    }
 }
