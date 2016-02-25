@@ -2,6 +2,7 @@ package com.adaptationsoft.games.trivia.unit_tests;
 
 import com.adaptionsoft.games.uglytrivia.Player;
 import com.adaptionsoft.games.uglytrivia.Players;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -12,22 +13,29 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.hasItems;
 
 public class PlayersShould {
+    private Player chet;
+    private Player pat;
+    private Player sue;
+
+    @Before
+    public void setUp() {
+        chet = new Player("Chet");
+        pat = new Player("Pat");
+        sue = new Player("Sue");
+    }
+
     @Test
     public void select_next_player_in_a_cycle() {
         Players players = new Players("Chet", "Pat", "Sue");
 
-        assertThat(players.next(), is(new Player("Chet")));
-        assertThat(players.next(), is(new Player("Pat")));
-        assertThat(players.next(), is(new Player("Sue")));
-        assertThat(players.next(), is(new Player("Chet")));
+        assertThat(players.next(), is(chet));
+        assertThat(players.next(), is(pat));
+        assertThat(players.next(), is(sue));
+        assertThat(players.next(), is(chet));
     }
 
     @Test
     public void notify_who_the_next_player_is() {
-        Player chet = new Player("Chet");
-        Player pat = new Player("Pat");
-        Player sue = new Player("Sue");
-
         FakePlayers players = new FakePlayers("Chet", "Pat", "Sue");
 
         players.next();
