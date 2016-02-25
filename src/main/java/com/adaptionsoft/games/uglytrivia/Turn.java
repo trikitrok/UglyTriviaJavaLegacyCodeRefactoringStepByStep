@@ -26,8 +26,6 @@ public class Turn {
 
         advance(roll, player);
 
-        nextQuestionFor(player);
-
         answer(player);
     }
 
@@ -46,11 +44,7 @@ public class Turn {
     }
 
     private void advance(int places, Player player) {
-        player.advance(places, board);
-    }
-
-    private void nextQuestionFor(Player player) {
-        System.out.println(board.questionAt(player.place()));
+       player.advance(places, board);
     }
 
     private void tryToGetOutOfPenaltyBox(int roll, Player player) {

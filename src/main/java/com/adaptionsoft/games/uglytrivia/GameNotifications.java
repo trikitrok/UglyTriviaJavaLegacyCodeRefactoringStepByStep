@@ -12,5 +12,5 @@ public interface GameNotifications {
 
     void playerWins(Player player);
 
-    void newBoardLocation(Player player, Board board);
+    void newBoardLocation(Player player, BoardLocation boardLocation);
 }

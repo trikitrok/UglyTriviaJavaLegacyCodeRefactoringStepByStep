@@ -35,8 +35,9 @@ public class ConsoleGameNotifications implements GameNotifications {
     }
 
     @Override
-    public void newBoardLocation(Player player, Board board) {
+    public void newBoardLocation(Player player, BoardLocation boardLocation) {
         System.out.println(player + "'s new location is " + player.place());
-        System.out.println("The category is " + board.categoryAt(player.place()));
+        System.out.println("The category is " + boardLocation.category());
+        System.out.println(boardLocation.question());
     }
 }

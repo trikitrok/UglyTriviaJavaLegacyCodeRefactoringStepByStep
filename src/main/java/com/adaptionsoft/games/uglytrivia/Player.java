@@ -43,8 +43,9 @@ public class Player {
     }
 
     public void advance(int places, Board board) {
-        this.place = board.getPlaceAhead(this.place, places);
-        gameNotifications.newBoardLocation(this, board);
+        place = board.getPlaceAhead(place, places);
+        BoardLocation boardLocation = board.boardLocationAt(place);
+        gameNotifications.newBoardLocation(this, boardLocation);
     }
 
     public int place() {

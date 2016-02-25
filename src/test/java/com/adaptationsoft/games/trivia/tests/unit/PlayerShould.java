@@ -17,14 +17,15 @@ public class PlayerShould {
         verify(gameNotifications).playerWins(player);
     }
 
-//    @Test
-//    public void notify_its_new_board_location_when_it_advances() {
-//        GameNotifications gameNotifications = mock(GameNotifications.class);
-//        Board board = Board.create();
-//        Player player = new Player("koko", gameNotifications);
-//
-//        player.advance(1, Board.create());
-//
-//        verify(gameNotifications).newBoardLocation(player, board);
-//    }
+    @Test
+    public void notify_its_new_board_location_when_it_advances() {
+        GameNotifications gameNotifications = mock(GameNotifications.class);
+        Player player = new Player("koko", gameNotifications);
+
+        player.advance(1, Board.create());
+
+        verify(gameNotifications).newBoardLocation(
+                player, new BoardLocation(Category.Science, "Science Question 0")
+        );
+    }
 }
