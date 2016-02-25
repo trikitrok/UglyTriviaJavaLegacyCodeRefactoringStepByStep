@@ -29,4 +29,8 @@ public class Board {
     public Category categoryAt(int place) {
         return categories.categoryAt(place);
     }
+
+    public BoardLocation boardLocationAt(int place) {
+        return new BoardLocation(categoryAt(place), questionAt(place));
+    }
 }
