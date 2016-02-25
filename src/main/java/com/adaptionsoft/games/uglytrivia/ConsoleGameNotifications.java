@@ -28,4 +28,9 @@ public class ConsoleGameNotifications implements GameNotifications {
     public void rightAnswer(Player player) {
         System.out.println("Answer was correct!!!!");
     }
+
+    @Override
+    public void playerWins(Player player) {
+        System.out.println(player + " now has " + player.goldCoins() + " Gold Coins.");
+    }
 }

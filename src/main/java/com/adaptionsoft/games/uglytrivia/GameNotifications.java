@@ -9,4 +9,6 @@ public interface GameNotifications {
     void wrongAnswer(Player player);
 
     void rightAnswer(Player player);
+
+    void playerWins(Player player);
 }

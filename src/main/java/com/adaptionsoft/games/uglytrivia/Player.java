@@ -1,6 +1,8 @@
 package com.adaptionsoft.games.uglytrivia;
 
 public class Player {
+    public static final int GOLD_COINS_PER_WIN = 1;
+
     int place;
     String name;
     int goldCoins;
@@ -14,7 +16,7 @@ public class Player {
     }
 
     public void winGoldCoin() {
-        this.goldCoins++;
+        this.goldCoins += GOLD_COINS_PER_WIN;
     }
 
     public boolean hasWonAccordingTo(Rules rules) {

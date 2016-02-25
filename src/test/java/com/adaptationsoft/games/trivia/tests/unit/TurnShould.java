@@ -10,7 +10,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class TurnShould {
-
     @Test
     public void ask_a_judge_if_an_answer_was_wrong() {
         Judge judge = mock(Judge.class);
@@ -84,5 +83,26 @@ public class TurnShould {
         turn.play(player);
 
         verify(gameNotifications).rightAnswer(player);
+    }
+
+    @Test
+    public void notify_when_a_player_wins_gold_coins() {
+        Player player = new Player("koko");
+        int anySide = 3;
+        Dice dice = mock(Dice.class);
+        doReturn(anySide).when(dice).roll();
+        Judge judge = mock(Judge.class);
+        doReturn(false).when(judge).answerWasWrong();
+        GameNotifications gameNotifications = mock(GameNotifications.class);
+        Turn turn = new Turn(
+                dice,
+                Board.create(),
+                new Rules(),
+                judge,
+                gameNotifications);
+
+        turn.play(player);
+
+        verify(gameNotifications).playerWins(player);
     }
 }
