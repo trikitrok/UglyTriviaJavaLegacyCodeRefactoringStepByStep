@@ -17,8 +17,7 @@ public class Turn {
     }
 
     public void play(Player player) {
-        int roll = dice.roll();
-        gameNotifications.diceRollWas(roll);
+        int roll = roll();
 
         tryToGetOutOfPenaltyBox(roll, player);
 
@@ -30,6 +29,12 @@ public class Turn {
         nextQuestionFor(player);
 
         answer(player);
+    }
+
+    private int roll() {
+        int roll = dice.roll();
+        gameNotifications.diceRollWas(roll);
+        return roll;
     }
 
     private boolean inPenaltyBox(Player player) {
