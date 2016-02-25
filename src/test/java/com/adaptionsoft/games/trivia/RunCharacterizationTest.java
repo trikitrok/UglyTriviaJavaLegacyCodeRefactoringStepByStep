@@ -42,9 +42,9 @@ public class RunCharacterizationTest {
     }
 
     private Game createGame(int seed) {
-        Random rand = new Random(seed);
+        Random random = new Random(seed);
         Game game = new Game(new Players("Chet", "Pat", "Sue"), new Rules(), new Turn(
-                new Dice(rand), rand, new Board(new Categories(), new Questions()), new Rules()));
+                new Dice(random), random, new Board(new Categories(), new Questions()), new Rules()));
         return game;
     }
 
