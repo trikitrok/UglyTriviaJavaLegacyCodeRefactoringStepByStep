@@ -22,7 +22,10 @@ public class Players implements Iterable<Player> {
     }
 
     public void add(String playerName) {
-        players.add(new Player(playerName));
+        Player player = new Player(playerName);
+        players.add(player);
+        System.out.println(player + " was added");
+        System.out.println("They are player number " + String.valueOf(players.size()));
     }
 
     @Override

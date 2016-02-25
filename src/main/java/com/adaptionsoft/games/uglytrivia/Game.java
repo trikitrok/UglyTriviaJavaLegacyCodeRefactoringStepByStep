@@ -14,7 +14,6 @@ public class Game {
     }
 
     public void run() {
-        presentPlayers();
         play();
     }
 
@@ -23,14 +22,6 @@ public class Game {
             nextPlayer();
             playTurn();
         } while (noPlayerHasWon());
-    }
-
-    private void presentPlayers() {
-        int num = 0;
-        for (Player player : players) {
-            System.out.println(player + " was added");
-            System.out.println("They are player number " + String.valueOf(++num));
-        }
     }
 
     private void playTurn() {
