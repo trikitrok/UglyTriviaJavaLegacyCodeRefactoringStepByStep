@@ -10,10 +10,10 @@ import static org.mockito.Mockito.verify;
 public class JuryShould {
 
     @Test
-    public void make_player_win_gold_when_its_answer_is_correct() {
+    public void make_player_win_gold_when_its_answer_is_right() {
         Player player = mock(Player.class);
         AnswersChecker answersChecker = mock(AnswersChecker.class);
-        doReturn(true).when(answersChecker).isAnswerCorrect(player);
+        doReturn(true).when(answersChecker).isAnswerRight(player);
         GameNotifications gameNotifications = mock(GameNotifications.class);
         Jury jury = new Jury(answersChecker, gameNotifications);
 
@@ -26,12 +26,25 @@ public class JuryShould {
     public void make_player_enter_the_penalty_box_when_its_answer_is_incorrect() {
         Player player = mock(Player.class);
         AnswersChecker answersChecker = mock(AnswersChecker.class);
-        doReturn(false).when(answersChecker).isAnswerCorrect(player);
+        doReturn(false).when(answersChecker).isAnswerRight(player);
         GameNotifications gameNotifications = mock(GameNotifications.class);
         Jury jury = new Jury(answersChecker, gameNotifications);
 
         jury.rewardAnswer(player);
 
         verify(player).enterPenaltyBox();
+    }
+
+    @Test
+    public void notify_when_players_answer_is_right() {
+        Player player = mock(Player.class);
+        AnswersChecker answersChecker = mock(AnswersChecker.class);
+        doReturn(true).when(answersChecker).isAnswerRight(player);
+        GameNotifications gameNotifications = mock(GameNotifications.class);
+        Jury jury = new Jury(answersChecker, gameNotifications);
+
+        jury.rewardAnswer(player);
+
+        verify(gameNotifications).rightAnswer(player);
     }
 }
