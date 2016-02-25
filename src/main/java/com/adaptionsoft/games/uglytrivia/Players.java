@@ -1,7 +1,6 @@
 package com.adaptionsoft.games.uglytrivia;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class Players {
@@ -21,13 +20,14 @@ public class Players {
     }
 
     public Player next() {
-        updateCurrentPlayerIndex();
-
-        Player currentPlayer = players.get(currentPlayerIndex);
-
+        Player currentPlayer = nextCurrentPlayer();
         gameNotifications.newCurrentPlayerIs(currentPlayer);
-
         return currentPlayer;
+    }
+
+    private Player nextCurrentPlayer() {
+        updateCurrentPlayerIndex();
+        return players.get(currentPlayerIndex);
     }
 
     private void updateCurrentPlayerIndex() {
