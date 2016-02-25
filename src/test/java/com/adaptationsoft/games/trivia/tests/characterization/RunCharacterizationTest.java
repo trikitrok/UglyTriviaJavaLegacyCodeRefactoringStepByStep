@@ -1,4 +1,4 @@
-package com.adaptionsoft.games.trivia.characterization_tests;
+package com.adaptationsoft.games.trivia.tests.characterization;
 
 import static org.junit.Assert.assertEquals;
 

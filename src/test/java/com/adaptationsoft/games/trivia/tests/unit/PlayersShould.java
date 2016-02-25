@@ -1,4 +1,4 @@
-package com.adaptationsoft.games.trivia.unit_tests;
+package com.adaptationsoft.games.trivia.tests.unit;
 
 import com.adaptionsoft.games.uglytrivia.GameNotifications;
 import com.adaptionsoft.games.uglytrivia.Player;
