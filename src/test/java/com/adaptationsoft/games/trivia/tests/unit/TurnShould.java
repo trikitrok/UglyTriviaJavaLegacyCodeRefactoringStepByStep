@@ -14,15 +14,11 @@ public class TurnShould {
     public void ask_a_judge_if_an_answer_was_wrong() {
         Judge judge = mock(Judge.class);
 
-        int seed = 1234;
-        Random random = new Random(seed);
-
         Turn turn = new Turn(
-                new Dice(random),
+                new Dice(new Random()),
                 Board.create(),
                 new Rules(),
-                judge
-        );
+                judge);
 
         turn.play(new Player("koko"));
 
