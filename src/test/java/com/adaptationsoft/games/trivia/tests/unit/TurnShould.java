@@ -11,119 +11,46 @@ import static org.mockito.Mockito.verify;
 
 public class TurnShould {
     @Test
-    public void ask_a_judge_if_an_answer_was_wrong() {
-        Judge judge = mock(Judge.class);
-
-        Turn turn = new Turn(
-                new Dice(new Random()),
-                Board.create(),
-                new Rules(),
-                judge, new ConsoleGameNotifications());
-
-        turn.play(new Player("koko"));
-
-        verify(judge).answerWasWrong();
-    }
-
-    @Test
     public void notify_roll_result() {
         int rollResult = 3;
         Dice dice = mock(Dice.class);
         doReturn(rollResult).when(dice).roll();
         GameNotifications gameNotifications = mock(GameNotifications.class);
+        Jury jury = mock(Jury.class);
+
         Turn turn = new Turn(
                 dice,
                 Board.create(),
                 new Rules(),
                 new RandomJudge(new Random()),
-                gameNotifications);
+                gameNotifications,
+                jury);
 
-        turn.play(new Player("koko"));
+        turn.play(new Player("koko", gameNotifications));
 
         verify(gameNotifications).diceRollWas(rollResult);
     }
 
     @Test
-    public void notify_when_an_answer_is_wrong() {
-        Player player = new Player("koko");
-        int anySide = 3;
-        Dice dice = mock(Dice.class);
-        doReturn(anySide).when(dice).roll();
-        Judge judge = mock(Judge.class);
-        doReturn(true).when(judge).answerWasWrong();
+    public void tells_the_jury_to_reward_the_players_answer() {
         GameNotifications gameNotifications = mock(GameNotifications.class);
+        Player player = new Player("koko", gameNotifications);
+        int rollResult = 3;
+        Dice dice = mock(Dice.class);
+        doReturn(rollResult).when(dice).roll();
+        Jury jury = mock(Jury.class);
+
         Turn turn = new Turn(
                 dice,
                 Board.create(),
                 new Rules(),
-                judge,
-                gameNotifications);
+                new RandomJudge(new Random()),
+                gameNotifications,
+                jury);
 
         turn.play(player);
 
-        verify(gameNotifications).wrongAnswer(player);
+        verify(jury).rewardAnswer(player);
     }
 
-    @Test
-    public void notify_when_an_answer_is_right() {
-        Player player = new Player("koko");
-        int anySide = 3;
-        Dice dice = mock(Dice.class);
-        doReturn(anySide).when(dice).roll();
-        Judge judge = mock(Judge.class);
-        doReturn(false).when(judge).answerWasWrong();
-        GameNotifications gameNotifications = mock(GameNotifications.class);
-        Turn turn = new Turn(
-                dice,
-                Board.create(),
-                new Rules(),
-                judge,
-                gameNotifications);
-
-        turn.play(player);
-
-        verify(gameNotifications).rightAnswer(player);
-    }
-
-    @Test
-    public void make_player_win_a_gold_coin_when_the_answer_is_right() {
-        int anySide = 3;
-        Dice dice = mock(Dice.class);
-        doReturn(anySide).when(dice).roll();
-        Judge judge = mock(Judge.class);
-        doReturn(false).when(judge).answerWasWrong();
-        GameNotifications gameNotifications = mock(GameNotifications.class);
-        Player player = mock(Player.class);
-        Turn turn = new Turn(
-                dice,
-                Board.create(),
-                new Rules(),
-                judge,
-                gameNotifications);
-
-        turn.play(player);
-
-        verify(player).winGoldCoin();
-    }
-
-    @Test
-    public void make_player_enter_penalty_box_when_the_answer_is_wrong() {
-        int anySide = 3;
-        Dice dice = mock(Dice.class);
-        doReturn(anySide).when(dice).roll();
-        Judge judge = mock(Judge.class);
-        doReturn(true).when(judge).answerWasWrong();
-        GameNotifications gameNotifications = mock(GameNotifications.class);
-        Player player = mock(Player.class);
-        Turn turn = new Turn(
-                dice,
-                Board.create(),
-                new Rules(),
-                judge,
-                gameNotifications);
-
-        turn.play(player);
-
-        verify(player).enterPenaltyBox();
-    }
 }

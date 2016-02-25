@@ -6,14 +6,16 @@ public class Turn {
     private Rules rules;
     private Judge judge;
     private GameNotifications gameNotifications;
+    private Jury jury;
 
-    public Turn(Dice dice, Board board, Rules rules, Judge judge, GameNotifications gameNotifications) {
+    public Turn(Dice dice, Board board, Rules rules, Judge judge, GameNotifications gameNotifications, Jury jury) {
         super();
         this.dice = dice;
         this.board = board;
         this.rules = rules;
         this.judge = judge;
         this.gameNotifications = gameNotifications;
+        this.jury = jury;
     }
 
     public void play(Player player) {
@@ -42,13 +44,7 @@ public class Turn {
     }
 
     private void answer(Player player) {
-        if (answerWasWrong()) {
-            gameNotifications.wrongAnswer(player);
-            player.enterPenaltyBox();
-        } else {
-            gameNotifications.rightAnswer(player);
-            player.winGoldCoin();
-        }
+        jury.rewardAnswer(player);
     }
 
     private boolean answerWasWrong() {

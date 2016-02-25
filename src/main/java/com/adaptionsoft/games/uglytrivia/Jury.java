@@ -11,11 +11,11 @@ public class Jury {
 
     public void rewardAnswer(Player player) {
         if (answersChecker.isAnswerRight(player)) {
-            player.winGoldCoin();
             gameNotifications.rightAnswer(player);
+            player.winGoldCoin();
         } else {
-            player.enterPenaltyBox();
             gameNotifications.wrongAnswer(player);
+            player.enterPenaltyBox();
         }
     }
 }
