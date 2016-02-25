@@ -47,8 +47,6 @@ public class Turn {
 
     private void advance(int places, Player player) {
         player.advance(places, board);
-        System.out.println(player + "'s new location is " + player.place());
-        System.out.println("The category is " + board.categoryAt(player.place()));
     }
 
     private void nextQuestionFor(Player player) {
