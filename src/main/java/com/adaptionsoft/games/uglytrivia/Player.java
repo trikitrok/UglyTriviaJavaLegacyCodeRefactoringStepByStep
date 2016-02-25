@@ -21,6 +21,20 @@ public class Player {
         this.inPenaltyBox = false;
     }
 
+    public void advance(int places, Board board) {
+        place = board.getPlaceAhead(place, places);
+        BoardLocation boardLocation = board.boardLocationAt(place);
+        gameNotifications.newBoardLocation(this, boardLocation);
+    }
+
+    public void tryToGetOutOfPenaltyBox(int roll, Rules rules) {
+        if (rules.playerShouldContinueInPenaltyBox(roll)) {
+            gameNotifications.notGettingOutOfPenaltyBox(this);
+            return;
+        }
+        getOutOfPenaltyBox();
+    }
+
     public void winGoldCoin() {
         this.goldCoins += GOLD_COINS_PER_WIN;
         gameNotifications.playerWins(this);
@@ -36,16 +50,6 @@ public class Player {
 
     public void enterPenaltyBox() {
         this.inPenaltyBox = true;
-    }
-
-    public void getOutOfPenaltyBox() {
-        this.inPenaltyBox = false;
-    }
-
-    public void advance(int places, Board board) {
-        place = board.getPlaceAhead(place, places);
-        BoardLocation boardLocation = board.boardLocationAt(place);
-        gameNotifications.newBoardLocation(this, boardLocation);
     }
 
     public int place() {
@@ -76,12 +80,8 @@ public class Player {
         return name.hashCode();
     }
 
-    public void tryToGetOutOfPenaltyBox(int roll, Rules rules) {
-        if (!rules.playerShouldContinueInPenaltyBox(roll)) {
-            getOutOfPenaltyBox();
-            gameNotifications.gettingOutOfPenaltyBox(this);
-        } else {
-            gameNotifications.notGettingOutOfPenaltyBox(this);
-        }
+    private void getOutOfPenaltyBox() {
+        this.inPenaltyBox = false;
+        gameNotifications.gettingOutOfPenaltyBox(this);
     }
 }

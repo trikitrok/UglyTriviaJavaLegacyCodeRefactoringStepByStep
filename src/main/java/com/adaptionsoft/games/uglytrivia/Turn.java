@@ -51,11 +51,6 @@ public class Turn {
         if (!inPenaltyBox(player))
             return;
 
-        if (!rules.playerShouldContinueInPenaltyBox(roll)) {
-            player.getOutOfPenaltyBox();
-            System.out.println(player + " is getting out of the penalty box");
-        } else {
-            System.out.println(player + " is not getting out of the penalty box");
-        }
+        player.tryToGetOutOfPenaltyBox(roll, rules);
     }
 }
