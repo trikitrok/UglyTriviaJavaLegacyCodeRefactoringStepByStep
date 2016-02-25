@@ -22,7 +22,7 @@ public class Turn {
 
         ifInPenaltyBoxTryToGetOut(roll, player);
 
-        if (player.inPenaltyBox())
+        if (inPenaltyBox(player))
             return;
 
         advance(roll, player);
@@ -30,6 +30,10 @@ public class Turn {
         nextQuestionFor(player);
 
         answer(player);
+    }
+
+    private boolean inPenaltyBox(Player player) {
+        return player.inPenaltyBox();
     }
 
     private void answer(Player player) {
@@ -59,7 +63,7 @@ public class Turn {
     }
 
     private void ifInPenaltyBoxTryToGetOut(int roll, Player player) {
-        if (!player.inPenaltyBox())
+        if (!inPenaltyBox(player))
             return;
 
         if (!rules.playerShouldContinueInPenaltyBox(roll)) {
