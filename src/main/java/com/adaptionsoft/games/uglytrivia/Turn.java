@@ -4,16 +4,14 @@ public class Turn {
     private Dice dice;
     private Board board;
     private Rules rules;
-    private Judge judge;
     private GameNotifications gameNotifications;
     private Jury jury;
 
-    public Turn(Dice dice, Board board, Rules rules, Judge judge, GameNotifications gameNotifications, Jury jury) {
+    public Turn(Dice dice, Board board, Rules rules, GameNotifications gameNotifications, Jury jury) {
         super();
         this.dice = dice;
         this.board = board;
         this.rules = rules;
-        this.judge = judge;
         this.gameNotifications = gameNotifications;
         this.jury = jury;
     }
@@ -45,10 +43,6 @@ public class Turn {
 
     private void answer(Player player) {
         jury.rewardAnswer(player);
-    }
-
-    private boolean answerWasWrong() {
-        return judge.answerWasWrong();
     }
 
     private void advance(int places, Player player) {

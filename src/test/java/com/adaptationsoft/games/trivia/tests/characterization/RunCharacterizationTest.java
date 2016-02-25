@@ -38,7 +38,6 @@ public class RunCharacterizationTest {
         Random random = new Random(seed);
         Turn turn = new Turn(
                 new Dice(random), Board.create(), new Rules(),
-                new RandomJudge(random),
                 gameNotifications,
                 new Jury(new RandomAnswerChecker(random), gameNotifications));
         Game game = new Game(new Players(gameNotifications, "Chet", "Pat", "Sue"),  new Rules(), turn);

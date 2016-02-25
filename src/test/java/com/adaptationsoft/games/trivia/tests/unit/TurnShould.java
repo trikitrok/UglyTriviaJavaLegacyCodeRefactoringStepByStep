@@ -3,8 +3,6 @@ package com.adaptationsoft.games.trivia.tests.unit;
 import com.adaptionsoft.games.uglytrivia.*;
 import org.junit.Test;
 
-import java.util.Random;
-
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -22,7 +20,6 @@ public class TurnShould {
                 dice,
                 Board.create(),
                 new Rules(),
-                new RandomJudge(new Random()),
                 gameNotifications,
                 jury);
 
@@ -44,7 +41,6 @@ public class TurnShould {
                 dice,
                 Board.create(),
                 new Rules(),
-                new RandomJudge(new Random()),
                 gameNotifications,
                 jury);
 
