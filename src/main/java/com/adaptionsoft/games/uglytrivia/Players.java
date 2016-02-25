@@ -42,7 +42,7 @@ public class Players implements Iterable<Player> {
         notifyPlayerAddition(player);
     }
 
-    private void notifyPlayerAddition(Player player) {
+    protected void notifyPlayerAddition(Player player) {
         System.out.println(player + " was added");
         System.out.println("They are player number " + String.valueOf(players.size()));
     }

@@ -71,15 +71,29 @@ public class PlayersShould {
         inOrder.verify(gameNotifications).newCurrentPlayerIs(chet);
     }
 
+    @Test
+    public void notify_new_player_additions() {
+        FakePlayers players = new FakePlayers("Chet", "Pat", "Sue");
+
+        assertThat(players.notifiedAddedPlayers, hasItems(chet, pat, sue));
+    }
+
     class FakePlayers extends Players {
         public List<Player> currentPlayersSequence = new ArrayList<Player>();
+        public List<Player> notifiedAddedPlayers = new ArrayList<Player>();;
 
         public FakePlayers(String... playerNames) {
-            super(playerNames);
+            for (String playerName : playerNames) {
+                add(playerName);
+            }
         }
 
         protected void notifyNewCurrentPlayer(Player currentPlayer) {
             currentPlayersSequence.add(currentPlayer);
+        }
+
+        protected void notifyPlayerAddition(Player player) {
+            notifiedAddedPlayers.add(player);
         }
     }
 }
