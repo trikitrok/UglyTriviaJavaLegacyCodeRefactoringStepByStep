@@ -85,9 +85,9 @@ public class PlayersShould {
 
         new Players(gameNotifications, "Chet", "Pat", "Sue");
 
-        inOrder.verify(gameNotifications).newPlayerAdded(chet);
-        inOrder.verify(gameNotifications).newPlayerAdded(pat);
-        inOrder.verify(gameNotifications).newPlayerAdded(sue);
+        inOrder.verify(gameNotifications).newPlayerAdded(chet, 1);
+        inOrder.verify(gameNotifications).newPlayerAdded(pat, 2);
+        inOrder.verify(gameNotifications).newPlayerAdded(sue, 3);
     }
 
     class FakePlayers extends Players {

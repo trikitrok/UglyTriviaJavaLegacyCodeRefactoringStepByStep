@@ -8,7 +8,8 @@ public class ConsoleGameNotifications implements GameNotifications {
     }
 
     @Override
-    public void newPlayerAdded(Player player) {
-
+    public void newPlayerAdded(Player player, int numberOfPlayers) {
+        System.out.println(player + " was added");
+        System.out.println("They are player number " + String.valueOf(numberOfPlayers));
     }
 }

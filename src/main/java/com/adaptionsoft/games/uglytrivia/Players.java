@@ -50,9 +50,7 @@ public class Players implements Iterable<Player> {
     }
 
     protected void notifyPlayerAddition(Player player) {
-        System.out.println(player + " was added");
-        System.out.println("They are player number " + String.valueOf(players.size()));
-        gameNotifications.newPlayerAdded(player);
+        gameNotifications.newPlayerAdded(player, players.size());
     }
 
     @Override
