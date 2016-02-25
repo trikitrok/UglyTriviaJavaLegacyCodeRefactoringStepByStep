@@ -1,7 +1,5 @@
 package com.adaptionsoft.games.uglytrivia;
 
-import java.util.Random;
-
 public class Turn {
     private Dice dice;
     private Board board;
