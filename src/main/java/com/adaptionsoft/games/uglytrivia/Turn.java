@@ -43,11 +43,10 @@ public class Turn {
 
     private void answer(Player player) {
         if (answerWasWrong()) {
-            System.out.println("Question was incorrectly answered");
-            System.out.println(player + " was sent to the penalty box");
+            gameNotifications.wrongAnswer(player);
             player.enterPenaltyBox();
         } else {
-            System.out.println("Answer was correct!!!!");
+            gameNotifications.rightAnswer(player);
             player.winGoldCoin();
             System.out.println(player + " now has " + player.goldCoins() + " Gold Coins.");
         }

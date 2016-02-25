@@ -43,4 +43,46 @@ public class TurnShould {
 
         verify(gameNotifications).diceRollWas(rollResult);
     }
+
+    @Test
+    public void notify_when_an_answer_is_wrong() {
+        Player player = new Player("koko");
+        int anySide = 3;
+        Dice dice = mock(Dice.class);
+        doReturn(anySide).when(dice).roll();
+        Judge judge = mock(Judge.class);
+        doReturn(true).when(judge).answerWasWrong();
+        GameNotifications gameNotifications = mock(GameNotifications.class);
+        Turn turn = new Turn(
+                dice,
+                Board.create(),
+                new Rules(),
+                judge,
+                gameNotifications);
+
+        turn.play(player);
+
+        verify(gameNotifications).wrongAnswer(player);
+    }
+
+    @Test
+    public void notify_when_an_answer_is_right() {
+        Player player = new Player("koko");
+        int anySide = 3;
+        Dice dice = mock(Dice.class);
+        doReturn(anySide).when(dice).roll();
+        Judge judge = mock(Judge.class);
+        doReturn(false).when(judge).answerWasWrong();
+        GameNotifications gameNotifications = mock(GameNotifications.class);
+        Turn turn = new Turn(
+                dice,
+                Board.create(),
+                new Rules(),
+                judge,
+                gameNotifications);
+
+        turn.play(player);
+
+        verify(gameNotifications).rightAnswer(player);
+    }
 }

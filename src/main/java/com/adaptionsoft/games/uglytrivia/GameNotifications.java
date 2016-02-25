@@ -5,4 +5,8 @@ public interface GameNotifications {
     void newPlayerAdded(Player player, int numberOfPlayers);
 
     void diceRollWas(int roll);
+
+    void wrongAnswer(Player player);
+
+    void rightAnswer(Player player);
 }
