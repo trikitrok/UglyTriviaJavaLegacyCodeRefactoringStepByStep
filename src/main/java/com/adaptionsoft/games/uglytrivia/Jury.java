@@ -15,6 +15,7 @@ public class Jury {
             gameNotifications.rightAnswer(player);
         } else {
             player.enterPenaltyBox();
+            gameNotifications.wrongAnswer(player);
         }
     }
 }

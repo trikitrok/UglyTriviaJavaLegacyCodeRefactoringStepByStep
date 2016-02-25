@@ -47,4 +47,17 @@ public class JuryShould {
 
         verify(gameNotifications).rightAnswer(player);
     }
+
+    @Test
+    public void notify_when_players_answer_is_wrong() {
+        Player player = mock(Player.class);
+        AnswersChecker answersChecker = mock(AnswersChecker.class);
+        doReturn(false).when(answersChecker).isAnswerRight(player);
+        GameNotifications gameNotifications = mock(GameNotifications.class);
+        Jury jury = new Jury(answersChecker, gameNotifications);
+
+        jury.rewardAnswer(player);
+
+        verify(gameNotifications).wrongAnswer(player);
+    }
 }
