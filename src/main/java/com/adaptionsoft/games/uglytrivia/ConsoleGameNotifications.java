@@ -6,4 +6,9 @@ public class ConsoleGameNotifications implements GameNotifications {
     public void newCurrentPlayerIs(Player player) {
         System.out.println(player + " is the current player");
     }
+
+    @Override
+    public void newPlayerAdded(Player player) {
+
+    }
 }

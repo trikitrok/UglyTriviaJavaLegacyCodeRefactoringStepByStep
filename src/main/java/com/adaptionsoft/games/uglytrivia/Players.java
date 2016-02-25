@@ -16,6 +16,13 @@ public class Players implements Iterable<Player> {
         }
     }
 
+    public Players(GameNotifications gameNotifications, String... playerNames) {
+        this.gameNotifications = gameNotifications;
+        for (String playerName : playerNames) {
+            add(playerName);
+        }
+    }
+
     public Player next() {
         updateCurrentPlayerIndex();
 
@@ -45,6 +52,7 @@ public class Players implements Iterable<Player> {
     protected void notifyPlayerAddition(Player player) {
         System.out.println(player + " was added");
         System.out.println("They are player number " + String.valueOf(players.size()));
+        gameNotifications.newPlayerAdded(player);
     }
 
     @Override

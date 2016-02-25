@@ -78,6 +78,18 @@ public class PlayersShould {
         assertThat(players.notifiedAddedPlayers, hasItems(chet, pat, sue));
     }
 
+    @Test
+    public void tell_the_game_notifications_which_players_are_added() {
+        GameNotifications gameNotifications = mock(GameNotifications.class);
+        InOrder inOrder = inOrder(gameNotifications);
+
+        new Players(gameNotifications, "Chet", "Pat", "Sue");
+
+        inOrder.verify(gameNotifications).newPlayerAdded(chet);
+        inOrder.verify(gameNotifications).newPlayerAdded(pat);
+        inOrder.verify(gameNotifications).newPlayerAdded(sue);
+    }
+
     class FakePlayers extends Players {
         public List<Player> currentPlayersSequence = new ArrayList<Player>();
         public List<Player> notifiedAddedPlayers = new ArrayList<Player>();;
