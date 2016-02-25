@@ -1,20 +1,14 @@
 package com.adaptationsoft.games.trivia.tests.characterization;
 
-import static org.junit.Assert.assertEquals;
-
-import java.io.ByteArrayOutputStream;
-import java.util.Random;
-
+import com.adaptionsoft.games.uglytrivia.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.adaptionsoft.games.uglytrivia.Board;
-import com.adaptionsoft.games.uglytrivia.Dice;
-import com.adaptionsoft.games.uglytrivia.Game;
-import com.adaptionsoft.games.uglytrivia.Players;
-import com.adaptionsoft.games.uglytrivia.Rules;
-import com.adaptionsoft.games.uglytrivia.Turn;
+import java.io.ByteArrayOutputStream;
+import java.util.Random;
+
+import static org.junit.Assert.assertEquals;
 
 public class RunCharacterizationTest {
 
@@ -42,7 +36,7 @@ public class RunCharacterizationTest {
     private Game createGame(int seed) {
         Random random = new Random(seed);
         Game game = new Game(new Players("Chet", "Pat", "Sue"), new Rules(), new Turn(
-                new Dice(random), random, Board.create(), new Rules()));
+                new Dice(random), random, Board.create(), new Rules(), new RandomJudge(random)));
         return game;
     }
 

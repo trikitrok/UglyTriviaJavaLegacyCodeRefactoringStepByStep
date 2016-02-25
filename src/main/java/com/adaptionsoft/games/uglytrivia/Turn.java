@@ -58,9 +58,7 @@ public class Turn {
     }
 
     private boolean answerWasWrong() {
-        if (judge!= null)
-            judge.answerWasWrong();
-        return rand.nextInt(9) == 7;
+        return judge.answerWasWrong();
     }
 
     private void advance(int places, Player player) {
