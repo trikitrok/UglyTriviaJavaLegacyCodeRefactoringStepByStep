@@ -105,4 +105,25 @@ public class TurnShould {
 
         verify(player).winGoldCoin();
     }
+
+    @Test
+    public void make_player_enter_penalty_box_when_the_answer_is_wrong() {
+        int anySide = 3;
+        Dice dice = mock(Dice.class);
+        doReturn(anySide).when(dice).roll();
+        Judge judge = mock(Judge.class);
+        doReturn(true).when(judge).answerWasWrong();
+        GameNotifications gameNotifications = mock(GameNotifications.class);
+        Player player = mock(Player.class);
+        Turn turn = new Turn(
+                dice,
+                Board.create(),
+                new Rules(),
+                judge,
+                gameNotifications);
+
+        turn.play(player);
+
+        verify(player).enterPenaltyBox();
+    }
 }
