@@ -10,11 +10,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.adaptionsoft.games.uglytrivia.Board;
-import com.adaptionsoft.games.uglytrivia.Categories;
 import com.adaptionsoft.games.uglytrivia.Dice;
 import com.adaptionsoft.games.uglytrivia.Game;
 import com.adaptionsoft.games.uglytrivia.Players;
-import com.adaptionsoft.games.uglytrivia.Questions;
 import com.adaptionsoft.games.uglytrivia.Rules;
 import com.adaptionsoft.games.uglytrivia.Turn;
 

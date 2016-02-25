@@ -7,9 +7,18 @@ public class Turn {
     private Random rand;
     private Board board;
     private Rules rules;
+    private Judge judge;
+
+    public Turn(Dice dice, Random rand, Board board, Rules rules, Judge judge) {
+        super();
+        this.dice = dice;
+        this.rand = rand;
+        this.board = board;
+        this.rules = rules;
+        this.judge = judge;
+    }
 
     public Turn(Dice dice, Random rand, Board board, Rules rules) {
-        super();
         this.dice = dice;
         this.rand = rand;
         this.board = board;
@@ -49,6 +58,8 @@ public class Turn {
     }
 
     private boolean answerWasWrong() {
+        if (judge!= null)
+            judge.answerWasWrong();
         return rand.nextInt(9) == 7;
     }
 
