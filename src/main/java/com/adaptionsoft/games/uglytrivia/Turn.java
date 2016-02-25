@@ -20,7 +20,7 @@ public class Turn {
         int roll = dice.roll();
         System.out.println("They have rolled a " + roll);
 
-        ifInPenaltyBoxTryToGetOut(roll, player);
+        tryToGetOutOfPenaltyBox(roll, player);
 
         if (inPenaltyBox(player))
             return;
@@ -62,7 +62,7 @@ public class Turn {
         System.out.println(board.questionAt(player.place()));
     }
 
-    private void ifInPenaltyBoxTryToGetOut(int roll, Player player) {
+    private void tryToGetOutOfPenaltyBox(int roll, Player player) {
         if (!inPenaltyBox(player))
             return;
 
