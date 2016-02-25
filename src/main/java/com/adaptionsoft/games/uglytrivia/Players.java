@@ -36,7 +36,7 @@ public class Players implements Iterable<Player> {
             currentPlayerIndex = 0;
     }
 
-    public void add(String playerName) {
+    private void add(String playerName) {
         Player player = new Player(playerName);
         players.add(player);
         gameNotifications.newPlayerAdded(player, players.size());
