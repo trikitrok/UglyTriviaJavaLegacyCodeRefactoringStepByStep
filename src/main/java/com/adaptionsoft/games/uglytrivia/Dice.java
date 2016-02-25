@@ -14,7 +14,6 @@ public class Dice {
 
     public int roll() {
         int roll = rand.nextInt(DICE_SIDES - 1) + 1;
-        System.out.println("They have rolled a " + roll);
         return roll;
     }
 }

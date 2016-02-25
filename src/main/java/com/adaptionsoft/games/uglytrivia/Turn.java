@@ -18,6 +18,7 @@ public class Turn {
 
     public void play(Player player) {
         int roll = dice.roll();
+        System.out.println("They have rolled a " + roll);
 
         ifInPenaltyBoxTryToGetOut(roll, player);
 
