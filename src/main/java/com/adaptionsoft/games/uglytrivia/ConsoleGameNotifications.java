@@ -33,4 +33,10 @@ public class ConsoleGameNotifications implements GameNotifications {
     public void playerWins(Player player) {
         System.out.println(player + " now has " + player.goldCoins() + " Gold Coins.");
     }
+
+    @Override
+    public void newBoardLocation(Player player, Board board) {
+        System.out.println(player + "'s new location is " + player.place());
+        System.out.println("The category is " + board.categoryAt(player.place()));
+    }
 }
