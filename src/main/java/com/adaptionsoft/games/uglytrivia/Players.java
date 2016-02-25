@@ -6,7 +6,6 @@ import java.util.List;
 
 public class Players implements Iterable<Player> {
     GameNotifications gameNotifications;
-
     int currentPlayerIndex = -1;
     List<Player> players = new ArrayList<Player>();
 
