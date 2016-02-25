@@ -2,6 +2,7 @@ package com.adaptionsoft.games.uglytrivia;
 
 public class Player {
     public static final int GOLD_COINS_PER_WIN = 1;
+    private final GameNotifications gameNotifications;
 
     int place;
     String name;
@@ -9,6 +10,11 @@ public class Player {
     boolean inPenaltyBox;
 
     public Player(String name) {
+        this(name, new ConsoleGameNotifications());
+    }
+
+    public Player(String name, GameNotifications gameNotifications) {
+        this.gameNotifications = gameNotifications;
         this.name = name;
         this.place = 0;
         this.goldCoins = 0;
@@ -17,6 +23,7 @@ public class Player {
 
     public void winGoldCoin() {
         this.goldCoins += GOLD_COINS_PER_WIN;
+        gameNotifications.playerWins(this);
     }
 
     public boolean hasWonAccordingTo(Rules rules) {

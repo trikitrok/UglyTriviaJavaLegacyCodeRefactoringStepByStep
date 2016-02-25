@@ -86,14 +86,14 @@ public class TurnShould {
     }
 
     @Test
-    public void notify_when_a_player_wins_gold_coins() {
-        Player player = new Player("koko");
+    public void make_player_win_a_gold_coin_when_the_answer_is_right() {
         int anySide = 3;
         Dice dice = mock(Dice.class);
         doReturn(anySide).when(dice).roll();
         Judge judge = mock(Judge.class);
         doReturn(false).when(judge).answerWasWrong();
         GameNotifications gameNotifications = mock(GameNotifications.class);
+        Player player = mock(Player.class);
         Turn turn = new Turn(
                 dice,
                 Board.create(),
@@ -103,6 +103,6 @@ public class TurnShould {
 
         turn.play(player);
 
-        verify(gameNotifications).playerWins(player);
+        verify(player).winGoldCoin();
     }
 }

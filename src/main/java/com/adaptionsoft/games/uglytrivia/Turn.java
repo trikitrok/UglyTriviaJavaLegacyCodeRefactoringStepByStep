@@ -48,7 +48,6 @@ public class Turn {
         } else {
             gameNotifications.rightAnswer(player);
             player.winGoldCoin();
-            gameNotifications.playerWins(player);
         }
     }
 
