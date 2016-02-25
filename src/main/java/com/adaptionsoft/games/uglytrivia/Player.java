@@ -7,7 +7,6 @@ public class Player {
     boolean inPenaltyBox;
 
     public Player(String name) {
-        super();
         this.name = name;
         this.place = 0;
         this.goldCoins = 0;
