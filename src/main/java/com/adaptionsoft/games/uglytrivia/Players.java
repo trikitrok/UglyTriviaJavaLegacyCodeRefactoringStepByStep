@@ -15,15 +15,19 @@ public class Players implements Iterable<Player> {
     }
 
     public Player next() {
-        currentPlayerIndex++;
-        if (currentPlayerIndex == players.size())
-            currentPlayerIndex = 0;
+        updateCurrentPlayerIndex();
 
         Player currentPlayer = players.get(currentPlayerIndex);
 
         System.out.println(currentPlayer + " is the current player");
 
         return currentPlayer;
+    }
+
+    private void updateCurrentPlayerIndex() {
+        currentPlayerIndex++;
+        if (currentPlayerIndex == players.size())
+            currentPlayerIndex = 0;
     }
 
     public void add(String playerName) {
