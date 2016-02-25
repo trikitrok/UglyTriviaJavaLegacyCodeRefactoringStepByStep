@@ -25,13 +25,9 @@ public class Players implements Iterable<Player> {
 
         Player currentPlayer = players.get(currentPlayerIndex);
 
-        notifyNewCurrentPlayer(currentPlayer);
+        gameNotifications.newCurrentPlayerIs(currentPlayer);
 
         return currentPlayer;
-    }
-
-    protected void notifyNewCurrentPlayer(Player currentPlayer) {
-        gameNotifications.newCurrentPlayerIs(currentPlayer);
     }
 
     private void updateCurrentPlayerIndex() {
@@ -43,10 +39,6 @@ public class Players implements Iterable<Player> {
     public void add(String playerName) {
         Player player = new Player(playerName);
         players.add(player);
-        notifyPlayerAddition(player);
-    }
-
-    protected void notifyPlayerAddition(Player player) {
         gameNotifications.newPlayerAdded(player, players.size());
     }
 
