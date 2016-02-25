@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Players implements Iterable<Player> {
+public class Players {
     GameNotifications gameNotifications;
     int currentPlayerIndex = -1;
     List<Player> players = new ArrayList<Player>();
@@ -40,10 +40,5 @@ public class Players implements Iterable<Player> {
         Player player = new Player(playerName);
         players.add(player);
         gameNotifications.newPlayerAdded(player, players.size());
-    }
-
-    @Override
-    public Iterator<Player> iterator() {
-        return players.iterator();
     }
 }
