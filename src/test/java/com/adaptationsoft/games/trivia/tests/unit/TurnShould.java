@@ -19,7 +19,6 @@ public class TurnShould {
 
         Turn turn = new Turn(
                 new Dice(random),
-                random,
                 Board.create(),
                 new Rules(),
                 judge

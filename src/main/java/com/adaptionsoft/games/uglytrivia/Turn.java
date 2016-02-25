@@ -8,7 +8,7 @@ public class Turn {
     private Rules rules;
     private Judge judge;
 
-    public Turn(Dice dice, Random rand, Board board, Rules rules, Judge judge) {
+    public Turn(Dice dice, Board board, Rules rules, Judge judge) {
         super();
         this.dice = dice;
         this.board = board;
