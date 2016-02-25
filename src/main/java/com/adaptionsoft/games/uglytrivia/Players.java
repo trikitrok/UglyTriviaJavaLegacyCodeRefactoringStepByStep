@@ -24,7 +24,7 @@ public class Players implements Iterable<Player> {
         return currentPlayer;
     }
 
-    private void notifyNewCurrentPlayer(Player currentPlayer) {
+    protected void notifyNewCurrentPlayer(Player currentPlayer) {
         System.out.println(currentPlayer + " is the current player");
     }
 
