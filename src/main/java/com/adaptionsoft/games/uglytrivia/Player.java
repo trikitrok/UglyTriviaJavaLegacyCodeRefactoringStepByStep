@@ -75,4 +75,13 @@ public class Player {
     public int hashCode() {
         return name.hashCode();
     }
+
+    public void tryToGetOutOfPenaltyBox(int roll, Rules rules) {
+        if (!rules.playerShouldContinueInPenaltyBox(roll)) {
+            getOutOfPenaltyBox();
+            gameNotifications.gettingOutOfPenaltyBox(this);
+        } else {
+            gameNotifications.notGettingOutOfPenaltyBox(this);
+        }
+    }
 }

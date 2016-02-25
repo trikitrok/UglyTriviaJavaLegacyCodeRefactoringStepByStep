@@ -40,4 +40,14 @@ public class ConsoleGameNotifications implements GameNotifications {
         System.out.println("The category is " + boardLocation.category());
         System.out.println(boardLocation.question());
     }
+
+    @Override
+    public void gettingOutOfPenaltyBox(Player player) {
+        System.out.println(player + " is getting out of the penalty box");
+    }
+
+    @Override
+    public void notGettingOutOfPenaltyBox(Player player) {
+        System.out.println(player + " is not getting out of the penalty box");
+    }
 }

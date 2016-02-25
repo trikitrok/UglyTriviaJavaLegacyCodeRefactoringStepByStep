@@ -3,6 +3,8 @@ package com.adaptationsoft.games.trivia.tests.unit;
 import com.adaptionsoft.games.uglytrivia.*;
 import org.junit.Test;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
@@ -27,5 +29,31 @@ public class PlayerShould {
         verify(gameNotifications).newBoardLocation(
                 player, new BoardLocation(Category.Science, "Science Question 0")
         );
+    }
+
+    @Test
+    public void notify_when_it_is_in_the_penalty_box_and_it_gets_out() {
+        int anyOddRoll = 3;
+        GameNotifications gameNotifications = mock(GameNotifications.class);
+        Player player = new Player("koko", gameNotifications);
+        player.enterPenaltyBox();
+
+        player.tryToGetOutOfPenaltyBox(anyOddRoll, new Rules());
+
+        verify(gameNotifications).gettingOutOfPenaltyBox(player);
+        assertThat(player.inPenaltyBox(), is(false));
+    }
+
+    @Test
+    public void notify_when_it_is_in_the_penalty_box_and_it_does_not_get_out() {
+        int anyEvenRoll = 4;
+        GameNotifications gameNotifications = mock(GameNotifications.class);
+        Player player = new Player("koko", gameNotifications);
+        player.enterPenaltyBox();
+
+        player.tryToGetOutOfPenaltyBox(anyEvenRoll, new Rules());
+
+        verify(gameNotifications).notGettingOutOfPenaltyBox(player);
+        assertThat(player.inPenaltyBox(), is(true));
     }
 }
