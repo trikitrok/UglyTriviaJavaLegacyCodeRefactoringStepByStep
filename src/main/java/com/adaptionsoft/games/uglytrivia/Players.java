@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Players implements Iterable<Player> {
-    GameNotifications gameNotifications;
+    GameNotifications gameNotifications = new ConsoleGameNotifications();
 
     int currentPlayerIndex = -1;
     List<Player> players = new ArrayList<Player>();
@@ -27,10 +27,7 @@ public class Players implements Iterable<Player> {
     }
 
     protected void notifyNewCurrentPlayer(Player currentPlayer) {
-        if(gameNotifications != null)
-            gameNotifications.newCurrentPlayerIs(currentPlayer);
-
-        System.out.println(currentPlayer + " is the current player");
+        gameNotifications.newCurrentPlayerIs(currentPlayer);
     }
 
     private void updateCurrentPlayerIndex() {

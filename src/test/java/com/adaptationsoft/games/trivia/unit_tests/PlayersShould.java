@@ -16,7 +16,6 @@ import static org.hamcrest.Matchers.hasItems;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.verify;
 
 public class PlayersShould {
     private Player chet;
