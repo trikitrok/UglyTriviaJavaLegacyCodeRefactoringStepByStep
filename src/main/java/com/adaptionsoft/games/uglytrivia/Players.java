@@ -19,9 +19,13 @@ public class Players implements Iterable<Player> {
 
         Player currentPlayer = players.get(currentPlayerIndex);
 
-        System.out.println(currentPlayer + " is the current player");
+        notifyNewCurrentPlayer(currentPlayer);
 
         return currentPlayer;
+    }
+
+    private void notifyNewCurrentPlayer(Player currentPlayer) {
+        System.out.println(currentPlayer + " is the current player");
     }
 
     private void updateCurrentPlayerIndex() {
