@@ -35,8 +35,11 @@ public class RunCharacterizationTest {
 
     private Game createGame(int seed) {
         Random random = new Random(seed);
-        Game game = new Game(new Players("Chet", "Pat", "Sue"), new Rules(), new Turn(
-                new Dice(random), Board.create(), new Rules(), new RandomJudge(random)));
+        Turn turn = new Turn(
+                new Dice(random), Board.create(), new Rules(),
+                new RandomJudge(random),
+                new ConsoleGameNotifications());
+        Game game = new Game(new Players("Chet", "Pat", "Sue"),  new Rules(), turn);
         return game;
     }
 

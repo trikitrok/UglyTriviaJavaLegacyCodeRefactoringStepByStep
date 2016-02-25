@@ -5,18 +5,20 @@ public class Turn {
     private Board board;
     private Rules rules;
     private Judge judge;
+    private GameNotifications gameNotifications;
 
-    public Turn(Dice dice, Board board, Rules rules, Judge judge) {
+    public Turn(Dice dice, Board board, Rules rules, Judge judge, GameNotifications gameNotifications) {
         super();
         this.dice = dice;
         this.board = board;
         this.rules = rules;
         this.judge = judge;
+        this.gameNotifications = gameNotifications;
     }
 
     public void play(Player player) {
         int roll = dice.roll();
-        System.out.println("They have rolled a " + roll);
+        gameNotifications.diceRollWas(roll);
 
         tryToGetOutOfPenaltyBox(roll, player);
 

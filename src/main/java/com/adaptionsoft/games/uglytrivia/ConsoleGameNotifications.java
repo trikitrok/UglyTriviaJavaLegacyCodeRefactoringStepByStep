@@ -12,4 +12,9 @@ public class ConsoleGameNotifications implements GameNotifications {
         System.out.println(player + " was added");
         System.out.println("They are player number " + String.valueOf(numberOfPlayers));
     }
+
+    @Override
+    public void diceRollWas(int roll) {
+        System.out.println("They have rolled a " + roll);
+    }
 }
