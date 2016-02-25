@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 public class Players implements Iterable<Player> {
-    int currentPlayer = -1;
+    int currentPlayerIndex = -1;
     List<Player> players = new ArrayList<Player>();
 
     public Players(String... playerNames) {
@@ -15,10 +15,15 @@ public class Players implements Iterable<Player> {
     }
 
     public Player next() {
-        currentPlayer++;
-        if (currentPlayer == players.size())
-            currentPlayer = 0;
-        return players.get(currentPlayer);
+        currentPlayerIndex++;
+        if (currentPlayerIndex == players.size())
+            currentPlayerIndex = 0;
+
+        Player currentPlayer = players.get(currentPlayerIndex);
+
+        System.out.println(currentPlayer + " is the current player");
+
+        return currentPlayer;
     }
 
     public void add(String playerName) {

@@ -30,7 +30,6 @@ public class Game {
 
     private void nextPlayer() {
         currentPlayer = players.next();
-        System.out.println(currentPlayer + " is the current player");
     }
 
     private boolean noPlayerHasWon() {
