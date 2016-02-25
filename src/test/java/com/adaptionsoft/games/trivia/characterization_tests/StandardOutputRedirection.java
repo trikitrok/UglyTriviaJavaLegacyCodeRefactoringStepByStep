@@ -1,4 +1,4 @@
-package com.adaptionsoft.games.trivia;
+package com.adaptionsoft.games.trivia.characterization_tests;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
