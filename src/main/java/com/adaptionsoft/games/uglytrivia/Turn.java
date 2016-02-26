@@ -5,15 +5,15 @@ public class Turn {
     private Board board;
     private Rules rules;
     private GameNotifications gameNotifications;
-    private AnswerReward answerReward;
+    private GameHost gameHost;
 
-    public Turn(Dice dice, Board board, Rules rules, GameNotifications gameNotifications, AnswerReward answerReward) {
+    public Turn(Dice dice, Board board, Rules rules, GameNotifications gameNotifications, GameHost gameHost) {
         super();
         this.dice = dice;
         this.board = board;
         this.rules = rules;
         this.gameNotifications = gameNotifications;
-        this.answerReward = answerReward;
+        this.gameHost = gameHost;
     }
 
     public void play(Player player) {
@@ -41,7 +41,7 @@ public class Turn {
     }
 
     private void answer(Player player) {
-        answerReward.giveTo(player);
+        gameHost.rewardAnswer(player);
     }
 
     private void advance(int places, Player player) {

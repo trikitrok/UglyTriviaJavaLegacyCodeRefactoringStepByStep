@@ -15,7 +15,7 @@ public class TurnShould {
     private GameNotifications gameNotifications;
     private Player player;
     private int rollResult;
-    private AnswerReward answerReward;
+    private GameHost gameHost;
     private Turn turn;
 
     @Before
@@ -25,13 +25,13 @@ public class TurnShould {
         doReturn(rollResult).when(dice).roll();
         gameNotifications = mock(GameNotifications.class);
         player = new Player("koko", gameNotifications);
-        answerReward = mock(AnswerReward.class);
+        gameHost = mock(GameHost.class);
         turn = new Turn(
             dice,
             BoardFactory.create(),
             new Rules(),
             gameNotifications,
-            answerReward);
+            gameHost);
     }
 
     @Test
@@ -45,7 +45,7 @@ public class TurnShould {
     public void tells_the_jury_to_reward_the_players_answer() {
         turn.play(player);
 
-        verify(answerReward).giveTo(player);
+        verify(gameHost).rewardAnswer(player);
     }
 
 }
