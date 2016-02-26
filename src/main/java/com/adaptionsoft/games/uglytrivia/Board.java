@@ -1,13 +1,13 @@
 package com.adaptionsoft.games.uglytrivia;
 
+import java.util.List;
+
 public class Board {
     private final int BOARDS_PLACES_NUMBER = 12;
-    private Categories categories;
-    private Questions questions;
+    private List<BoardLocation> boardLocations;
 
-    public Board(Categories categories, Questions questions) {
-        this.categories = categories;
-        this.questions = questions;
+    public Board(List<BoardLocation> boardLocations) {
+        this.boardLocations = boardLocations;
     }
 
     public int getPlaceAhead(int currentPlace, int places) {
@@ -18,16 +18,8 @@ public class Board {
         return place;
     }
 
-    public String questionAt(int place) {
-        return questions.nextQuestionAbout(categoryAt(place));
-    }
-
-    public Category categoryAt(int place) {
-        return categories.categoryAt(place);
-    }
-
     public BoardLocation boardLocationAt(int place) {
-        return new BoardLocation(categoryAt(place), questionAt(place), place);
+        return boardLocations.get(place);
     }
 
     public BoardLocation getLocationAhead(BoardLocation currentBoardLocation, int places) {
@@ -35,6 +27,6 @@ public class Board {
     }
 
     public BoardLocation getStart() {
-        return new BoardLocation(Category.Pop, "Pop Question 0", 0);
+        return boardLocations.get(0);
     }
 }

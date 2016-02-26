@@ -30,11 +30,12 @@ public class PlayerShould {
 
     @Test
     public void notify_its_new_board_location_when_it_advances() {
-        player.advance(1, BoardFactory.create());
+        Board board = BoardFactory.create();
+        player.advance(1, board);
 
         verify(gameNotifications).newBoardLocation(
             player,
-            new BoardLocation(Category.Science, "Science Question 0", 1)
+            board.boardLocationAt(1)
         );
     }
 

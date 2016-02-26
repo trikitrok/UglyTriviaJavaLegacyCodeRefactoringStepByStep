@@ -2,12 +2,12 @@ package com.adaptionsoft.games.uglytrivia;
 
 public class BoardLocation {
     private final Category category;
-    private final String question;
+    private final Questions questions;
     private int position;
 
-    public BoardLocation(Category category, String question, int position) {
+    public BoardLocation(Category category, Questions questions, int position) {
         this.category = category;
-        this.question = question;
+        this.questions = questions;
         this.position = position;
     }
 
@@ -16,7 +16,7 @@ public class BoardLocation {
     }
 
     public String question() {
-        return question;
+        return questions.nextQuestionAbout(category);
     }
 
     public int position() {
@@ -30,15 +30,11 @@ public class BoardLocation {
 
         BoardLocation that = (BoardLocation) o;
 
-        if (category() != that.category()) return false;
-        return question() != null ? question().equals(that.question()) : that.question() == null;
-
+        return position == that.position;
     }
 
     @Override
     public int hashCode() {
-        int result = category() != null ? category().hashCode() : 0;
-        result = 31 * result + (question() != null ? question().hashCode() : 0);
-        return result;
+        return position;
     }
 }
