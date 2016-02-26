@@ -15,9 +15,9 @@ public class JuryShould {
         AnswersChecker answersChecker = mock(AnswersChecker.class);
         doReturn(true).when(answersChecker).isAnswerRight(player);
         GameNotifications gameNotifications = mock(GameNotifications.class);
-        Jury jury = new Jury(answersChecker, gameNotifications);
+        AnswerReward answerReward = new AnswerReward(answersChecker, gameNotifications);
 
-        jury.rewardAnswer(player);
+        answerReward.giveTo(player);
 
         verify(player).winGoldCoin();
     }
@@ -28,9 +28,9 @@ public class JuryShould {
         AnswersChecker answersChecker = mock(AnswersChecker.class);
         doReturn(false).when(answersChecker).isAnswerRight(player);
         GameNotifications gameNotifications = mock(GameNotifications.class);
-        Jury jury = new Jury(answersChecker, gameNotifications);
+        AnswerReward answerReward = new AnswerReward(answersChecker, gameNotifications);
 
-        jury.rewardAnswer(player);
+        answerReward.giveTo(player);
 
         verify(player).enterPenaltyBox();
     }
@@ -41,9 +41,9 @@ public class JuryShould {
         AnswersChecker answersChecker = mock(AnswersChecker.class);
         doReturn(true).when(answersChecker).isAnswerRight(player);
         GameNotifications gameNotifications = mock(GameNotifications.class);
-        Jury jury = new Jury(answersChecker, gameNotifications);
+        AnswerReward answerReward = new AnswerReward(answersChecker, gameNotifications);
 
-        jury.rewardAnswer(player);
+        answerReward.giveTo(player);
 
         verify(gameNotifications).rightAnswer(player);
     }
@@ -54,9 +54,9 @@ public class JuryShould {
         AnswersChecker answersChecker = mock(AnswersChecker.class);
         doReturn(false).when(answersChecker).isAnswerRight(player);
         GameNotifications gameNotifications = mock(GameNotifications.class);
-        Jury jury = new Jury(answersChecker, gameNotifications);
+        AnswerReward answerReward = new AnswerReward(answersChecker, gameNotifications);
 
-        jury.rewardAnswer(player);
+        answerReward.giveTo(player);
 
         verify(gameNotifications).wrongAnswer(player);
     }

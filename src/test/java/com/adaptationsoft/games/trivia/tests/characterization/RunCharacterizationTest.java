@@ -42,7 +42,7 @@ public class RunCharacterizationTest {
             BoardFactory.create(),
             new Rules(),
             gameNotifications,
-            new Jury(new RandomAnswerChecker(random), gameNotifications));
+            new AnswerReward(new RandomAnswerChecker(random), gameNotifications));
         Game game = new Game(new Players(gameNotifications, "Chet", "Pat", "Sue"), new Rules(), turn);
         return game;
     }
