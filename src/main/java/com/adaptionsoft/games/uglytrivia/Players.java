@@ -7,7 +7,7 @@ public class Players {
     GameNotifications gameNotifications;
     int currentPlayerIndex = -1;
     List<Player> players = new ArrayList<Player>();
-    
+
     public Players(GameNotifications gameNotifications, String... playerNames) {
         this.gameNotifications = gameNotifications;
         for (String playerName : playerNames) {
@@ -28,8 +28,7 @@ public class Players {
 
     private void updateCurrentPlayerIndex() {
         currentPlayerIndex++;
-        if (currentPlayerIndex == players.size())
-            currentPlayerIndex = 0;
+        currentPlayerIndex = currentPlayerIndex % players.size();
     }
 
     private void add(String playerName) {
