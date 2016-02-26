@@ -21,9 +21,17 @@ public class Turn {
 
         tryToGetOutOfPenaltyBox(roll, player);
 
+        if (stillInPenaltyBox(player)) {
+            return;
+        }
+
         advance(roll, player);
 
         answer(player);
+    }
+
+    private boolean stillInPenaltyBox(Player player) {
+        return player.inPenaltyBox();
     }
 
     private int roll() {
