@@ -34,7 +34,11 @@ public class Board {
         return new BoardLocation(categoryAt(place), questionAt(place), place);
     }
 
-    public BoardLocation getLocationAhead(int currentPlace, int places) {
-        return boardLocationAt(getPlaceAhead(currentPlace, places));
+    public BoardLocation getLocationAhead(BoardLocation currentBoardLocation, int places) {
+        return boardLocationAt(getPlaceAhead(currentBoardLocation.position(), places));
+    }
+
+    public BoardLocation getStart() {
+        return new BoardLocation(Category.Pop, "Pop Question 0", 0);
     }
 }

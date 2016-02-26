@@ -4,10 +4,10 @@ public class Player {
     public static final int GOLD_COINS_PER_WIN = 1;
     private final GameNotifications gameNotifications;
 
-    int place;
     String name;
     int goldCoins;
     boolean inPenaltyBox;
+    BoardLocation boardLocation;
 
     public Player(String name) {
         this(name, new ConsoleGameNotifications());
@@ -16,7 +16,6 @@ public class Player {
     public Player(String name, GameNotifications gameNotifications) {
         this.gameNotifications = gameNotifications;
         this.name = name;
-        this.place = 0;
         this.goldCoins = 0;
         this.inPenaltyBox = false;
     }
@@ -25,8 +24,7 @@ public class Player {
         if (inPenaltyBox()) {
             return;
         }
-        place = board.getPlaceAhead(place, places);
-        BoardLocation boardLocation = board.boardLocationAt(place);
+        boardLocation = board.getLocationAhead(boardLocation(board), places);
         gameNotifications.newBoardLocation(this, boardLocation);
     }
 
@@ -65,7 +63,7 @@ public class Player {
     }
 
     public int place() {
-        return this.place;
+        return boardLocation.position();
     }
 
     public String toString() {
@@ -74,6 +72,13 @@ public class Player {
 
     public int goldCoins() {
         return this.goldCoins;
+    }
+
+    private BoardLocation boardLocation(Board board) {
+        if(boardLocation == null) {
+            boardLocation = board.getStart();
+        }
+        return boardLocation;
     }
 
     @Override

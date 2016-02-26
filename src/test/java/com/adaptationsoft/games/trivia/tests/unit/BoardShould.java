@@ -18,6 +18,9 @@ public class BoardShould {
     @Test
     public void return_the_board_location_some_places_ahead() {
         Board board = Board.create();
-        assertThat(board.getLocationAhead(0, 1), is(new BoardLocation(Category.Science, "Science Question 0", 1)));
+        assertThat(board.getLocationAhead(
+            new BoardLocation(Category.Science, "Pop Question 0", 0), 1),
+            is(new BoardLocation(Category.Science, "Science Question 0", 1))
+        );
     }
 }
