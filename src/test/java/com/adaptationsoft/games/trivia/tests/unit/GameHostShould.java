@@ -7,7 +7,7 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-public class JuryShould {
+public class GameHostShould {
 
     @Test
     public void make_player_win_gold_when_its_answer_is_right() {
