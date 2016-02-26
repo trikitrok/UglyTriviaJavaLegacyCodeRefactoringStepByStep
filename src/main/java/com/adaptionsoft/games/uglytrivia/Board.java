@@ -24,9 +24,6 @@ public class Board {
 
     private int getPositionAhead(int currentPositions, int positions) {
         int position = currentPositions + positions;
-        if (position > BOARD_LENGTH - 1) {
-            position = position - BOARD_LENGTH;
-        }
-        return position;
+        return position % BOARD_LENGTH;
     }
 }
