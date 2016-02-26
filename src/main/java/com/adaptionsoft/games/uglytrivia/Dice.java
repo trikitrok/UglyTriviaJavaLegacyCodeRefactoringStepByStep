@@ -8,7 +8,6 @@ public class Dice {
     private final int DICE_SIDES = 6;
 
     public Dice(Random rand) {
-        super();
         this.rand = rand;
     }
 

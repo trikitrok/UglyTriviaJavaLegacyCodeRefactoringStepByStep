@@ -8,7 +8,6 @@ public class Turn {
     private GameHost gameHost;
 
     public Turn(Dice dice, Board board, Rules rules, GameNotifications gameNotifications, GameHost gameHost) {
-        super();
         this.dice = dice;
         this.board = board;
         this.rules = rules;
