@@ -42,10 +42,9 @@ public class TurnShould {
     }
 
     @Test
-    public void tells_the_jury_to_reward_the_players_answer() {
+    public void tells_the_game_host_to_reward_the_players_answer() {
         turn.play(player);
 
         verify(gameHost).rewardAnswer(player);
     }
-
 }
