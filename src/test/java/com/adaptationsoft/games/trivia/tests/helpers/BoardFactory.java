@@ -7,21 +7,21 @@ import java.util.List;
 
 public class BoardFactory {
     public static Board create() {
-        Questions questions = QuestionsFactory.create();
+        QuestionsDecksByCategory questionsDecksByCategory = QuestionsDecksByCategoryFactory.create();
 
-        List<BoardLocation> boardLocations = createBoardLocations(questions);
+        List<BoardLocation> boardLocations = createBoardLocations(questionsDecksByCategory);
 
         return new Board(boardLocations);
     }
 
-    private static List<BoardLocation> createBoardLocations(Questions questions) {
+    private static List<BoardLocation> createBoardLocations(QuestionsDecksByCategory questionsDecksByCategory) {
         List<BoardLocation> boardLocations = new ArrayList<BoardLocation>();
 
         List<Category> categories = createCategoriesList();
 
         int position = 0;
         for (Category category : categories) {
-            boardLocations.add(new BoardLocation(category, questions, position));
+            boardLocations.add(new BoardLocation(category, questionsDecksByCategory, position));
             position++;
         }
 

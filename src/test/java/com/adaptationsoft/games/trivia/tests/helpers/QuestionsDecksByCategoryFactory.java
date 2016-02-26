@@ -1,16 +1,16 @@
 package com.adaptationsoft.games.trivia.tests.helpers;
 
 import com.adaptionsoft.games.uglytrivia.Category;
-import com.adaptionsoft.games.uglytrivia.Questions;
+import com.adaptionsoft.games.uglytrivia.QuestionsDecksByCategory;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
 
-public class QuestionsFactory {
+public class QuestionsDecksByCategoryFactory {
 
-    public static Questions create() {
+    public static QuestionsDecksByCategory create() {
         Map<Category, Deque<String>> questionsByCategory = new HashMap<Category, Deque<String>>();
         questionsByCategory.put(Category.Pop, new ArrayDeque<String>());
         questionsByCategory.put(Category.Science, new ArrayDeque<String>());
@@ -19,7 +19,7 @@ public class QuestionsFactory {
 
         initializeQuestionsByCategory(questionsByCategory);
 
-        return new Questions(questionsByCategory);
+        return new QuestionsDecksByCategory(questionsByCategory);
     }
 
     private static void initializeQuestionsByCategory(Map<Category, Deque<String>> questionsByCategory) {
