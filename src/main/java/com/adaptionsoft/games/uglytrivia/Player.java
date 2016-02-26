@@ -58,7 +58,7 @@ public class Player {
         this.inPenaltyBox = true;
     }
 
-    public int place() {
+    public int position() {
         return boardLocation.position();
     }
 
