@@ -33,7 +33,7 @@ public class PlayerShould {
 
         verify(gameNotifications).newBoardLocation(
             player,
-            new BoardLocation(Category.Science, "Science Question 0")
+            new BoardLocation(Category.Science, "Science Question 0", 1)
         );
     }
 

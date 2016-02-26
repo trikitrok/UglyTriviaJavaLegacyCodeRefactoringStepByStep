@@ -31,7 +31,7 @@ public class Board {
     }
 
     public BoardLocation boardLocationAt(int place) {
-        return new BoardLocation(categoryAt(place), questionAt(place));
+        return new BoardLocation(categoryAt(place), questionAt(place), place);
     }
 
     public BoardLocation getLocationAhead(int currentPlace, int places) {

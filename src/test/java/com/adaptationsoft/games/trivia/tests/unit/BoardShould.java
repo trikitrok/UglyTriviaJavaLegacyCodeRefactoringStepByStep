@@ -12,12 +12,12 @@ public class BoardShould {
     @Test
     public void return_the_board_location_at_a_given_place() {
         Board board = Board.create();
-        assertThat(board.boardLocationAt(0), is(new BoardLocation(Category.Pop, "Pop Question 0")));
+        assertThat(board.boardLocationAt(0), is(new BoardLocation(Category.Pop, "Pop Question 0", 0)));
     }
 
     @Test
     public void return_the_board_location_some_places_ahead() {
         Board board = Board.create();
-        assertThat(board.getLocationAhead(0, 1), is(new BoardLocation(Category.Science, "Science Question 0")));
+        assertThat(board.getLocationAhead(0, 1), is(new BoardLocation(Category.Science, "Science Question 0", 1)));
     }
 }

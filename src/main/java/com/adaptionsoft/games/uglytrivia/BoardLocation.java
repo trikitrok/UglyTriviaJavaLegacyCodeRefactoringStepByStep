@@ -3,10 +3,12 @@ package com.adaptionsoft.games.uglytrivia;
 public class BoardLocation {
     private final Category category;
     private final String question;
+    private int position;
 
-    public BoardLocation(Category category, String question) {
+    public BoardLocation(Category category, String question, int position) {
         this.category = category;
         this.question = question;
+        this.position = position;
     }
 
     public Category category() {
@@ -15,6 +17,10 @@ public class BoardLocation {
 
     public String question() {
         return question;
+    }
+
+    public int position() {
+        return position;
     }
 
     @Override
