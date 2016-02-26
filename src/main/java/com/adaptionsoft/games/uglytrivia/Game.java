@@ -14,10 +14,6 @@ public class Game {
     }
 
     public void run() {
-        play();
-    }
-
-    private void play() {
         do {
             nextPlayer();
             playTurn();
