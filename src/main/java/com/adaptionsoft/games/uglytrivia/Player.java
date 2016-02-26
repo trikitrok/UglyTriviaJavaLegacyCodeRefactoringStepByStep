@@ -24,7 +24,7 @@ public class Player {
         if (inPenaltyBox()) {
             return;
         }
-        boardLocation = board.getLocationAhead(boardLocation(board), places);
+        boardLocation = board.advance(boardLocation(board), places);
         gameNotifications.newBoardLocation(this, boardLocation);
     }
 
@@ -76,7 +76,7 @@ public class Player {
 
     private BoardLocation boardLocation(Board board) {
         if(boardLocation == null) {
-            boardLocation = board.getStart();
+            boardLocation = board.startLocation();
         }
         return boardLocation;
     }

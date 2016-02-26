@@ -35,7 +35,7 @@ public class PlayerShould {
 
         verify(gameNotifications).newBoardLocation(
             player,
-            board.boardLocationAt(1)
+            board.advance(board.startLocation(), 1)
         );
     }
 

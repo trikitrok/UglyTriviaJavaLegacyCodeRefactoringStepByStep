@@ -1,27 +1,32 @@
 package com.adaptationsoft.games.trivia.tests.unit;
 
-import com.adaptationsoft.games.trivia.tests.helpers.BoardFactory;
+import com.adaptationsoft.games.trivia.tests.helpers.QuestionsFactory;
 import com.adaptionsoft.games.uglytrivia.Board;
 import com.adaptionsoft.games.uglytrivia.BoardLocation;
 import com.adaptionsoft.games.uglytrivia.Category;
+import com.adaptionsoft.games.uglytrivia.Questions;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 public class BoardShould {
     @Test
-    public void return_the_board_location_at_a_given_place() {
-        Board board = BoardFactory.create();
-        assertThat(board.boardLocationAt(0), is(board.boardLocationAt(0)));
-    }
+    public void advance_board_location_some_positions_ahead() {
+        Questions questions = QuestionsFactory.create();
+        BoardLocation secondOne = new BoardLocation(Category.Science, questions, 1);
+        BoardLocation fourthOne = new BoardLocation(Category.Sports, questions, 3);
+        BoardLocation anyOne = null;
+        List<BoardLocation> boardLocations = new ArrayList<BoardLocation>();
+        boardLocations.add(anyOne);
+        boardLocations.add(secondOne);
+        boardLocations.add(anyOne);
+        boardLocations.add(fourthOne);
+        Board board = new Board(boardLocations);
 
-    @Test
-    public void return_the_board_location_some_places_ahead() {
-        Board board = BoardFactory.create();
-        assertThat(board.getLocationAhead(
-            board.boardLocationAt(0), 1),
-            is(board.boardLocationAt(1))
-        );
+        assertThat(board.advance(secondOne, 2), is(fourthOne));
     }
 }

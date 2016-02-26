@@ -10,16 +10,16 @@ public class Board {
         this.boardLocations = boardLocations;
     }
 
-    public BoardLocation boardLocationAt(int position) {
-        return boardLocations.get(position);
-    }
-
-    public BoardLocation getLocationAhead(BoardLocation currentBoardLocation, int positions) {
+    public BoardLocation advance(BoardLocation currentBoardLocation, int positions) {
         return boardLocationAt(getPositionAhead(currentBoardLocation.position(), positions));
     }
 
-    public BoardLocation getStart() {
+    public BoardLocation startLocation() {
         return boardLocations.get(0);
+    }
+
+    private BoardLocation boardLocationAt(int position) {
+        return boardLocations.get(position);
     }
 
     private int getPositionAhead(int currentPositions, int positions) {
