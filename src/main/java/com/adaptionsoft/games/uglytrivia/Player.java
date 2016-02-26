@@ -9,10 +9,6 @@ public class Player {
     boolean inPenaltyBox;
     BoardLocation boardLocation;
 
-    public Player(String name) {
-        this(name, new ConsoleGameNotifications());
-    }
-
     public Player(String name, GameNotifications gameNotifications) {
         this.gameNotifications = gameNotifications;
         this.name = name;

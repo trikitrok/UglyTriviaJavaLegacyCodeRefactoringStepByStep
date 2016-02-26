@@ -7,11 +7,7 @@ public class Players {
     GameNotifications gameNotifications;
     int currentPlayerIndex = -1;
     List<Player> players = new ArrayList<Player>();
-
-    public Players(String... playerNames) {
-        this(new ConsoleGameNotifications(), playerNames);
-    }
-
+    
     public Players(GameNotifications gameNotifications, String... playerNames) {
         this.gameNotifications = gameNotifications;
         for (String playerName : playerNames) {

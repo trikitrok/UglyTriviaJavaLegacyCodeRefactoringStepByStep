@@ -13,20 +13,22 @@ import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
 
 public class PlayersShould {
+    GameNotifications gameNotifications;
     private Player chet;
     private Player pat;
     private Player sue;
 
     @Before
     public void setUp() {
-        chet = new Player("Chet");
-        pat = new Player("Pat");
-        sue = new Player("Sue");
+        gameNotifications = mock(GameNotifications.class);
+        chet = new Player("Chet", gameNotifications);
+        pat = new Player("Pat", gameNotifications);
+        sue = new Player("Sue", gameNotifications);
     }
 
     @Test
     public void select_next_player_in_a_cycle() {
-        Players players = new Players("Chet", "Pat", "Sue");
+        Players players = new Players(gameNotifications, "Chet", "Pat", "Sue");
 
         assertThat(players.next(), is(chet));
         assertThat(players.next(), is(pat));
