@@ -36,7 +36,7 @@ public class TurnShould {
 
     @Test
     public void notify_roll_result() {
-        turn.play(new Player("koko", gameNotifications));
+        turn.play(player);
 
         verify(gameNotifications).diceRollWas(rollResult);
     }
