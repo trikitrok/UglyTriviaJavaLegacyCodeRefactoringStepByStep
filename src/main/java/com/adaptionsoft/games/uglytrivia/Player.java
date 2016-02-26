@@ -42,6 +42,11 @@ public class Player {
         getOutOfPenaltyBox();
     }
 
+    private void getOutOfPenaltyBox() {
+        this.inPenaltyBox = false;
+        gameNotifications.gettingOutOfPenaltyBox(this);
+    }
+
     public void winGoldCoin() {
         this.goldCoins += GOLD_COINS_PER_WIN;
         gameNotifications.playerWins(this);
@@ -85,10 +90,5 @@ public class Player {
     @Override
     public int hashCode() {
         return name.hashCode();
-    }
-
-    private void getOutOfPenaltyBox() {
-        this.inPenaltyBox = false;
-        gameNotifications.gettingOutOfPenaltyBox(this);
     }
 }
