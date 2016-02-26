@@ -21,9 +21,6 @@ public class Turn {
 
         tryToGetOutOfPenaltyBox(roll, player);
 
-        if (inPenaltyBox(player))
-            return;
-
         advance(roll, player);
 
         answer(player);
@@ -35,22 +32,15 @@ public class Turn {
         return roll;
     }
 
-    private boolean inPenaltyBox(Player player) {
-        return player.inPenaltyBox();
-    }
-
     private void answer(Player player) {
         jury.rewardAnswer(player);
     }
 
     private void advance(int places, Player player) {
-       player.advance(places, board);
+        player.advance(places, board);
     }
 
     private void tryToGetOutOfPenaltyBox(int roll, Player player) {
-        if (!inPenaltyBox(player))
-            return;
-
         player.tryToGetOutOfPenaltyBox(roll, rules);
     }
 }

@@ -10,6 +10,10 @@ public class Jury {
     }
 
     public void rewardAnswer(Player player) {
+        if (player.inPenaltyBox()) {
+            return;
+        }
+
         if (answersChecker.isAnswerRight(player)) {
             gameNotifications.rightAnswer(player);
             player.winGoldCoin();

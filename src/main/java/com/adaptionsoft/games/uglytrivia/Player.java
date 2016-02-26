@@ -22,12 +22,19 @@ public class Player {
     }
 
     public void advance(int places, Board board) {
+        if (inPenaltyBox()) {
+            return;
+        }
         place = board.getPlaceAhead(place, places);
         BoardLocation boardLocation = board.boardLocationAt(place);
         gameNotifications.newBoardLocation(this, boardLocation);
     }
 
     public void tryToGetOutOfPenaltyBox(int roll, Rules rules) {
+        if (!inPenaltyBox()) {
+            return;
+        }
+
         if (rules.playerShouldContinueInPenaltyBox(roll)) {
             gameNotifications.notGettingOutOfPenaltyBox(this);
             return;
