@@ -1,28 +1,18 @@
 package com.adaptionsoft.games.uglytrivia;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Categories {
-    private List<Category> categories;
+    private List<Category> categories = new ArrayList<Category>();
 
-    public Categories() {
-        this.categories = new ArrayList<Category>();
+    public Categories(Category... categories) {
+        Collections.addAll(this.categories, categories);
+    }
 
-        categories.add(Category.Pop);
-        categories.add(Category.Science);
-        categories.add(Category.Sports);
-        categories.add(Category.Rock);
-
-        categories.add(Category.Pop);
-        categories.add(Category.Science);
-        categories.add(Category.Sports);
-        categories.add(Category.Rock);
-        categories.add(Category.Pop);
-
-        categories.add(Category.Science);
-        categories.add(Category.Sports);
-        categories.add(Category.Rock);
+    public Categories(List<Category> categories) {
+        this.categories = categories;
     }
 
     public Category categoryAt(int place) {

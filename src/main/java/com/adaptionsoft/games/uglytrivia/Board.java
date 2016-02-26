@@ -5,10 +5,6 @@ public class Board {
     private Categories categories;
     private Questions questions;
 
-    public static Board create() {
-        return new Board(new Categories(), new Questions());
-    }
-
     public Board(Categories categories, Questions questions) {
         this.categories = categories;
         this.questions = questions;

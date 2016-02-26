@@ -1,5 +1,6 @@
 package com.adaptationsoft.games.trivia.tests.unit;
 
+import com.adaptationsoft.games.trivia.tests.helpers.BoardFactory;
 import com.adaptionsoft.games.uglytrivia.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,7 +30,7 @@ public class PlayerShould {
 
     @Test
     public void notify_its_new_board_location_when_it_advances() {
-        player.advance(1, Board.create());
+        player.advance(1, BoardFactory.create());
 
         verify(gameNotifications).newBoardLocation(
             player,

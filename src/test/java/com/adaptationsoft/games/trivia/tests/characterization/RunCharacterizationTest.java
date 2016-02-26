@@ -1,5 +1,6 @@
 package com.adaptationsoft.games.trivia.tests.characterization;
 
+import com.adaptationsoft.games.trivia.tests.helpers.BoardFactory;
 import com.adaptionsoft.games.uglytrivia.*;
 import org.junit.After;
 import org.junit.Before;
@@ -37,10 +38,12 @@ public class RunCharacterizationTest {
         GameNotifications gameNotifications = new ConsoleGameNotifications();
         Random random = new Random(seed);
         Turn turn = new Turn(
-                new Dice(random), Board.create(), new Rules(),
-                gameNotifications,
-                new Jury(new RandomAnswerChecker(random), gameNotifications));
-        Game game = new Game(new Players(gameNotifications, "Chet", "Pat", "Sue"),  new Rules(), turn);
+            new Dice(random),
+            BoardFactory.create(),
+            new Rules(),
+            gameNotifications,
+            new Jury(new RandomAnswerChecker(random), gameNotifications));
+        Game game = new Game(new Players(gameNotifications, "Chet", "Pat", "Sue"), new Rules(), turn);
         return game;
     }
 

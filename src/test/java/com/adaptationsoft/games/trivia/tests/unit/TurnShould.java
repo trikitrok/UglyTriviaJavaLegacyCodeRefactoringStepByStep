@@ -1,5 +1,6 @@
 package com.adaptationsoft.games.trivia.tests.unit;
 
+import com.adaptationsoft.games.trivia.tests.helpers.BoardFactory;
 import com.adaptionsoft.games.uglytrivia.*;
 import org.junit.Test;
 
@@ -17,11 +18,11 @@ public class TurnShould {
         Jury jury = mock(Jury.class);
 
         Turn turn = new Turn(
-                dice,
-                Board.create(),
-                new Rules(),
-                gameNotifications,
-                jury);
+            dice,
+            BoardFactory.create(),
+            new Rules(),
+            gameNotifications,
+            jury);
 
         turn.play(new Player("koko", gameNotifications));
 
@@ -38,11 +39,11 @@ public class TurnShould {
         Jury jury = mock(Jury.class);
 
         Turn turn = new Turn(
-                dice,
-                Board.create(),
-                new Rules(),
-                gameNotifications,
-                jury);
+            dice,
+            BoardFactory.create(),
+            new Rules(),
+            gameNotifications,
+            jury);
 
         turn.play(player);
 
