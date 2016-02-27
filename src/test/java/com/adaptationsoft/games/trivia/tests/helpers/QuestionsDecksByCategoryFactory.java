@@ -1,6 +1,7 @@
 package com.adaptationsoft.games.trivia.tests.helpers;
 
 import com.adaptionsoft.games.uglytrivia.Category;
+import com.adaptionsoft.games.uglytrivia.QuestionsDeck;
 import com.adaptionsoft.games.uglytrivia.QuestionsDecksByCategory;
 
 import java.util.ArrayDeque;
@@ -11,23 +12,20 @@ import java.util.Map;
 public class QuestionsDecksByCategoryFactory {
 
     public static QuestionsDecksByCategory create() {
-        Map<Category, Deque<String>> questionsByCategory = new HashMap<Category, Deque<String>>();
-        questionsByCategory.put(Category.Pop, new ArrayDeque<String>());
-        questionsByCategory.put(Category.Science, new ArrayDeque<String>());
-        questionsByCategory.put(Category.Sports, new ArrayDeque<String>());
-        questionsByCategory.put(Category.Rock, new ArrayDeque<String>());
-
-        initializeQuestionsByCategory(questionsByCategory);
+        Map<Category, QuestionsDeck> questionsByCategory = new HashMap<Category, QuestionsDeck>();
+        questionsByCategory.put(Category.Pop, createQuestionsDeck(Category.Pop, 50));
+        questionsByCategory.put(Category.Science, createQuestionsDeck(Category.Science, 50));
+        questionsByCategory.put(Category.Sports, createQuestionsDeck(Category.Sports, 50));
+        questionsByCategory.put(Category.Rock, createQuestionsDeck(Category.Rock, 50));
 
         return new QuestionsDecksByCategory(questionsByCategory);
     }
 
-    private static void initializeQuestionsByCategory(Map<Category, Deque<String>> questionsByCategory) {
-        for (int i = 0; i < 50; i++) {
-            questionsByCategory.get(Category.Pop).addLast("Pop Question " + i);
-            questionsByCategory.get(Category.Science).addLast("Science Question " + i);
-            questionsByCategory.get(Category.Sports).addLast("Sports Question " + i);
-            questionsByCategory.get(Category.Rock).addLast("Rock Question " + i);
+    private static QuestionsDeck createQuestionsDeck(Category category, int num) {
+        Deque<String> questionsDeck = new ArrayDeque<String>();
+        for (int i = 0; i < num; i++) {
+            questionsDeck.addLast(category + " Question " + i);
         }
+        return new QuestionsDeck(questionsDeck);
     }
 }
