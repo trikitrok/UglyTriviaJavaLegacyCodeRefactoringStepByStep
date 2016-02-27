@@ -12,13 +12,13 @@ import java.util.Map;
 public class QuestionsDecksByCategoryFactory {
 
     public static QuestionsDecksByCategory create() {
-        Map<Category, QuestionsDeck> questionsByCategory = new HashMap<Category, QuestionsDeck>();
-        questionsByCategory.put(Category.Pop, createQuestionsDeck(Category.Pop, 50));
-        questionsByCategory.put(Category.Science, createQuestionsDeck(Category.Science, 50));
-        questionsByCategory.put(Category.Sports, createQuestionsDeck(Category.Sports, 50));
-        questionsByCategory.put(Category.Rock, createQuestionsDeck(Category.Rock, 50));
+        Map<Category, QuestionsDeck> questionsDecksByCategory = new HashMap<Category, QuestionsDeck>();
+        questionsDecksByCategory.put(Category.Pop, createQuestionsDeck(Category.Pop, 50));
+        questionsDecksByCategory.put(Category.Science, createQuestionsDeck(Category.Science, 50));
+        questionsDecksByCategory.put(Category.Sports, createQuestionsDeck(Category.Sports, 50));
+        questionsDecksByCategory.put(Category.Rock, createQuestionsDeck(Category.Rock, 50));
 
-        return new QuestionsDecksByCategory(questionsByCategory);
+        return new QuestionsDecksByCategory(questionsDecksByCategory);
     }
 
     private static QuestionsDeck createQuestionsDeck(Category category, int num) {
