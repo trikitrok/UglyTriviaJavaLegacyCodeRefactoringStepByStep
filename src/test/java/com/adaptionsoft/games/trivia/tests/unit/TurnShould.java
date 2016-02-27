@@ -1,6 +1,6 @@
-package com.adaptationsoft.games.trivia.tests.unit;
+package com.adaptionsoft.games.trivia.tests.unit;
 
-import com.adaptationsoft.games.trivia.tests.helpers.BoardFactory;
+import com.adaptionsoft.games.trivia.tests.helpers.BoardFactory;
 import com.adaptionsoft.games.uglytrivia.*;
 import org.junit.Before;
 import org.junit.Test;

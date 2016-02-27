@@ -1,4 +1,4 @@
-package com.adaptationsoft.games.trivia.tests.helpers;
+package com.adaptionsoft.games.trivia.tests.helpers;
 
 import com.adaptionsoft.games.uglytrivia.QuestionsDeck;
 

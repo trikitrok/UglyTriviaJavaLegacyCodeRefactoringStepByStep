@@ -1,4 +1,4 @@
-package com.adaptationsoft.games.trivia.tests.unit;
+package com.adaptionsoft.games.trivia.tests.unit;
 
 import com.adaptionsoft.games.uglytrivia.Board;
 import com.adaptionsoft.games.uglytrivia.BoardLocation;
@@ -6,7 +6,7 @@ import com.adaptionsoft.games.uglytrivia.Category;
 import com.adaptionsoft.games.uglytrivia.QuestionsDecksByCategory;
 import org.junit.Test;
 
-import static com.adaptationsoft.games.trivia.tests.helpers.BoardBuilder.aBoard;
+import static com.adaptionsoft.games.trivia.tests.helpers.BoardBuilder.aBoard;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
