@@ -16,17 +16,17 @@ import static org.hamcrest.Matchers.is;
 public class BoardShould {
     @Test
     public void advance_board_location_some_positions_ahead() {
-        QuestionsDecksByCategory questionsDecksByCategory = QuestionsDecksByCategoryFactory.create();
-        BoardLocation secondOne = new BoardLocation(Category.Science, questionsDecksByCategory, 1);
-        BoardLocation fourthOne = new BoardLocation(Category.Sports, questionsDecksByCategory, 3);
-        BoardLocation anyOne = null;
+        QuestionsDecksByCategory anyQuestionsDecksByCategory = null;
+        BoardLocation secondBoardLocation = new BoardLocation(Category.Science, anyQuestionsDecksByCategory, 1);
+        BoardLocation fourthBoardLocation = new BoardLocation(Category.Sports, anyQuestionsDecksByCategory, 3);
+        BoardLocation anyBoardLocation = null;
         List<BoardLocation> boardLocations = new ArrayList<BoardLocation>();
-        boardLocations.add(anyOne);
-        boardLocations.add(secondOne);
-        boardLocations.add(anyOne);
-        boardLocations.add(fourthOne);
+        boardLocations.add(anyBoardLocation);
+        boardLocations.add(secondBoardLocation);
+        boardLocations.add(anyBoardLocation);
+        boardLocations.add(fourthBoardLocation);
         Board board = new Board(boardLocations);
 
-        assertThat(board.advance(secondOne, 2), is(fourthOne));
+        assertThat(board.advance(secondBoardLocation, 2), is(fourthBoardLocation));
     }
 }
